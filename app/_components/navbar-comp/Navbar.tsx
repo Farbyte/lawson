@@ -1,5 +1,6 @@
 import { AlignLeft, SquarePen } from "lucide-react";
 import NavSidebar from "./NavSidebar";
+import { UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   return (
@@ -8,9 +9,12 @@ export default function Navbar() {
       <button type="button" className="text-bold">
         lawson.
       </button>
-      <button type="button">
-        <SquarePen />
-      </button>
+      <div className="flex items-center gap-6">
+        <UserButton />
+        <button type="button">
+          <SquarePen />
+        </button>
+      </div>
     </nav>
   );
 }
