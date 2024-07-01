@@ -4,9 +4,7 @@ import NavSidebar from "./NavSidebar";
 export default function Navbar() {
   return (
     <nav className="mx-5 mt-6 flex justify-between">
-      <button type="button">
-        <NavSidebar />
-      </button>
+      <NavSidebar />
       <button type="button" className="text-bold">
         lawson.
       </button>
