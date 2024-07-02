@@ -5,7 +5,6 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { UserButton } from "@clerk/nextjs";
 import { AlignLeft } from "lucide-react";
 
 export default function NavSidebar() {
