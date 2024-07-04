@@ -3,17 +3,17 @@ import { CornerRightUp } from "lucide-react";
 
 export const InputComp = () => {
   return (
-    <div className="flex h-[20vh] items-center justify-center sm:h-[15vh]">
+    <div className="flex items-center justify-center">
       <form
-        className="relative w-full px-4 pt-2 sm:pt-10"
+        className="relative w-full flex justify-center"
       >
         <Textarea
-          className="bg-[#2F2F2F] text-white w-full resize-none rounded-md p-3 pr-10"
+          className="bg-[#2F2F2F] text-white w-full resize-none rounded-md"
           placeholder="Ask me anything..."
         />
         <button
           type="submit"
-          className="text-white absolute right-6 top-[40px] flex rounded-sm border-none bg-transparent px-2 py-1 transition duration-300 ease-in-out sm:top-[71px]"
+          className="text-white flex rounded-sm border-none bg-transparent transition duration-300 ease-in-out"
         >
           <CornerRightUp className="h-6 w-6" />
         </button>
