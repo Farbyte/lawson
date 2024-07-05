@@ -38,7 +38,7 @@ export const InputComp = () => {
         console.log("Files: ", res[0].url);
       }}
       onUploadError={(error: Error) => {
-        alert("ERROR! ${error.message}");
+        alert(`ERROR! ${error.message}`);
       }}
     />
   );
