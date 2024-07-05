@@ -11,16 +11,18 @@ export const InputComp = () => {
   const [overflow, setOverflow] = useState("auto");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleInput = (event: any) => {
-    const textareaLineHeight = 40;
-    const { target } = event;
-    setValue(target.value);
-    setHeight(`${target.scrollHeight}px`);
+  // Needs input re-rendering the api route too many times
 
-    if (target.value === "") {
-      setHeight(`${textareaLineHeight}px`);
-    }
-  };
+  // const handleInput = (event: any) => {
+  //   const textareaLineHeight = 40;
+  //   const { target } = event;
+  //   setValue(target.value);
+  //   setHeight(`${target.scrollHeight}px`);
+
+  //   if (target.value === "") {
+  //     setHeight(`${textareaLineHeight}px`);
+  //   }
+  // };
 
   const Uploadbutton = () => (
     <UploadButton
@@ -43,15 +45,15 @@ export const InputComp = () => {
     />
   );
 
-  useEffect(() => {
-    if (textareaRef.current) {
-      if (textareaRef.current.scrollHeight < 80) {
-        setHeight(`${textareaRef.current.scrollHeight}px`);
-      } else {
-        setOverflow(`overflow-y-auto`);
-      }
-    }
-  }, [textareaRef]);
+  // useEffect(() => {
+  //   if (textareaRef.current) {
+  //     if (textareaRef.current.scrollHeight < 80) {
+  //       setHeight(`${textareaRef.current.scrollHeight}px`);
+  //     } else {
+  //       setOverflow(`overflow-y-auto`);
+  //     }
+  //   }
+  // }, [textareaRef]);
 
   return (
     <div className="flex items-center justify-center">
@@ -64,8 +66,8 @@ export const InputComp = () => {
             placeholder="Ask me anything..."
             rows={1}
             style={{ height, overflow }}
-            value={value}
-            onInput={handleInput}
+            // value={value}s
+            // onInput={handleInput}
           />
           <button
             type="submit"
