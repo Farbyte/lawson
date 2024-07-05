@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { CornerRightUp, Plus } from "lucide-react";
 import { UploadButton } from "../uploadthing";
+import { uploadPdf } from "@/app/_hooks/uploadDocs";
 
 export const InputComp = () => {
 
@@ -20,6 +21,7 @@ export const InputComp = () => {
       appearance={{ button: "bg-transparent w-6 h-6" }}
       config={{ mode: "auto" }}
       onClientUploadComplete={(res) => {
+        uploadPdf(res[0].url, res[0].name);
         console.log("Files: ", res[0].url);
       }}
       onUploadError={(error: Error) => {

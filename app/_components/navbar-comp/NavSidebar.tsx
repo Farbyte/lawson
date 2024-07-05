@@ -32,7 +32,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Document[] })
             <SheetDescription className="mt-[60px] flex flex-col items-center justify-center">
               <div>Documents</div>
               {docs.map((doc) => (
-                <div key={doc.id}>{doc.fileName}</div>
+                <div key={doc.id} className="text-white">{doc.fileName}</div>
               ))}
             </SheetDescription>
           </SheetHeader>
