@@ -60,11 +60,11 @@ export const useCategorizedDocs = (docs: Doc[]) => {
     );
 
     return {
-      today: todayDocs,
-      yesterday: yesterdayDocs,
-      last7Days: last7DaysDocs,
-      last30Days: last30DaysDocs,
-      older: olderDocs,
+      "today": todayDocs,
+      "yesterday": yesterdayDocs,
+      "previous 7 Days": last7DaysDocs,
+      "previous 30 Days": last30DaysDocs,
+      "older": olderDocs,
     };
   }, [docs]);
 };
