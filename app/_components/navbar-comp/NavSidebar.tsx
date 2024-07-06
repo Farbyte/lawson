@@ -1,5 +1,6 @@
 "use client";
 
+import { useCategorizedDocs } from "@/app/_hooks/categorizeDocs";
 import {
   Sheet,
   SheetContent,
@@ -7,10 +8,10 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { AlignLeft, Ellipsis, Trash } from "lucide-react";
+import { AlignLeft, Trash } from "lucide-react";
 import { useState } from "react";
 
-interface Document {
+export interface Doc {
   id: string;
   fileName: string;
   fileUrl: string;
@@ -20,7 +21,7 @@ interface Document {
 export default function NavSidebar({
   initialDocs,
 }: {
-  initialDocs: Document[];
+  initialDocs: Doc[];
 }) {
   const [docs, setDocs] = useState(initialDocs);
 
@@ -28,6 +29,8 @@ export default function NavSidebar({
     `${
       str.length > length ? str.slice(0, length - ending.length) + ending : str
     }`;
+
+  const categorizedDocs = useCategorizedDocs(docs);
 
   async function deleteDocument(id: string, fileUrl: string) {
     try {
@@ -65,24 +68,32 @@ export default function NavSidebar({
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetDescription className="mt-[80px] flex flex-col gap-5">
-              {docs.map((doc) => (
-                <>
-                  <div className="flex cursor-pointer justify-between rounded-lg p-3 text-white hover:bg-[#212121]">
-                    <button key={doc.id} className="">
-                      {truncate(doc.fileName, 20)}
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        deleteDocument(doc.id, doc.fileUrl);
-                      }}
-                    >
-                      <Trash className="h-5 w-5 text-red-300 hover:text-red-600" />
-                    </button>
+            <SheetDescription className="mt-[80px] flex flex-col gap-10 ">
+              {Object.entries(categorizedDocs)
+                .filter(([_, docs]) => docs.length > 0)
+                .map(([category, docs]) => (
+                  <div key={category}>
+                    <h3 className="text-xs font-semibold capitalize px-3  text-gray-400">{category}</h3>
+                    {docs.map((doc) => (
+                      <div
+                        key={doc.id}
+                        className="flex cursor-pointer justify-between rounded-lg p-3 text-white hover:bg-[#212121]"
+                      >
+                        <button className="text-md">
+                          {truncate(doc.fileName, 20)}
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            deleteDocument(doc.id, doc.fileUrl);
+                          }}
+                        >
+                          <Trash className="h-5 w-5 text-red-300 hover:text-red-600" />
+                        </button>
+                      </div>
+                    ))}
                   </div>
-                </>
-              ))}
+                ))}
             </SheetDescription>
           </SheetHeader>
         </SheetContent>
