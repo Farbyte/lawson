@@ -67,40 +67,38 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
           <AlignLeft />
         </SheetTrigger>
         <SheetContent>
-          <SheetHeader>
-            <SheetDescription className="mt-[80px] flex flex-col gap-10">
-              {Object.entries(categorizedDocs)
-                .filter(([_, docs]) => docs.length > 0)
-                .map(([category, docs]) => (
-                  <div key={category}>
-                    <h3 className="px-3 text-xs font-semibold capitalize text-gray-400">
-                      {category}
-                    </h3>
-                    {docs.map((doc) => (
-                      <div
-                        key={doc.id}
+          <SheetDescription className="mt-[80px] flex flex-col gap-10">
+            {Object.entries(categorizedDocs)
+              .filter(([_, docs]) => docs.length > 0)
+              .map(([category, docs]) => (
+                <div key={category}>
+                  <h3 className="px-3 text-xs font-semibold capitalize text-gray-400">
+                    {category}
+                  </h3>
+                  {docs.map((doc) => (
+                    <div
+                      key={doc.id}
+                      onClick={(e) => {
+                        router.push(`/chat/${doc.id}`);
+                      }}
+                      className="flex cursor-pointer justify-between rounded-lg p-3 text-white hover:bg-[#212121]"
+                    >
+                      <button className="text-md">
+                        {truncate(doc.fileName, 20)}
+                      </button>
+                      <button
                         onClick={(e) => {
-                          router.push(`/chat/${doc.id}`);
+                          e.stopPropagation();
+                          deleteDocument(doc.id, doc.fileUrl);
                         }}
-                        className="flex cursor-pointer justify-between rounded-lg p-3 text-white hover:bg-[#212121]"
                       >
-                        <button className="text-md">
-                          {truncate(doc.fileName, 20)}
-                        </button>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            deleteDocument(doc.id, doc.fileUrl);
-                          }}
-                        >
-                          <Trash className="h-5 w-5 text-red-300 hover:text-red-600" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-            </SheetDescription>
-          </SheetHeader>
+                        <Trash className="h-5 w-5 text-red-300 hover:text-red-600" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ))}
+          </SheetDescription>
         </SheetContent>
       </Sheet>
     </>

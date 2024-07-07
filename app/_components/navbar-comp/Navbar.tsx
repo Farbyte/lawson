@@ -1,8 +1,9 @@
-import { AlignLeft, SquarePen } from "lucide-react";
+import { AlignLeft, Link, SquarePen } from "lucide-react";
 import NavSidebar from "./NavSidebar";
 import { UserButton } from "@clerk/nextjs";
 import { currentUser, User } from "@clerk/nextjs/server";
 import prisma from "@/utils/prisma";
+import NewChat from "./newChat";
 
 export default async function Navbar() {
   const user: User | null = await currentUser();
@@ -24,9 +25,7 @@ export default async function Navbar() {
       </button>
       <div className="flex items-center gap-6">
         <UserButton />
-        <button type="button">
-          <SquarePen />
-        </button>
+        <NewChat />
       </div>
     </nav>
   );
