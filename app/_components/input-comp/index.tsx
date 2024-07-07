@@ -5,14 +5,16 @@ import { CornerRightUp, Plus } from "lucide-react";
 import { UploadButton } from "../uploadthing";
 import { uploadPdf } from "@/app/_hooks/uploadDocs";
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { getLatestDocId } from "@/app/_hooks/getLatest";
+import { url } from "inspector";
 
 export const InputComp = () => {
-
   const user = useUser();
-  
+
   const router = useRouter();
+
+  const pathname = usePathname();
 
   const Uploadbutton = () => (
     <UploadButton
@@ -39,9 +41,15 @@ export const InputComp = () => {
     />
   );
 
+  function extractId(url: string): string {
+    const startIndex = url.indexOf("/chat/");
+    const id = url.substring(startIndex + "/chat/".length);
+    return id !== "" ? id : "Not Loaded";
+  }
+
   return (
-    <div className="flex items-center justify-center">
-      <div className="fixed bottom-6 w-full max-w-2xl">
+    <div className="flex flex-col items-center justify-center">
+      <div className="fixed bottom-2 w-full max-w-2xl">
         <form className="relative m-auto flex items-center gap-5 overflow-y-auto rounded-[26px] bg-[#2F2F2F] px-3 text-base md:px-5 lg:px-1 xl:px-5">
           <Uploadbutton />
           <Textarea
@@ -56,6 +64,7 @@ export const InputComp = () => {
             <CornerRightUp className="h-6 w-6" />
           </button>
         </form>
+        <p className="text-center mt-4 text-xs text-[#838E94]">Doc ID : {extractId(pathname)}</p>
       </div>
     </div>
   );
