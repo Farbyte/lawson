@@ -9,6 +9,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { AlignLeft, Trash } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export interface Doc {
@@ -18,12 +20,10 @@ export interface Doc {
   createdAt: Date;
 }
 
-export default function NavSidebar({
-  initialDocs,
-}: {
-  initialDocs: Doc[];
-}) {
+export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
   const [docs, setDocs] = useState(initialDocs);
+
+  const router = useRouter();
 
   const truncate = (str: string, length: number, ending = "...") =>
     `${
@@ -68,15 +68,20 @@ export default function NavSidebar({
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetDescription className="mt-[80px] flex flex-col gap-10 ">
+            <SheetDescription className="mt-[80px] flex flex-col gap-10">
               {Object.entries(categorizedDocs)
                 .filter(([_, docs]) => docs.length > 0)
                 .map(([category, docs]) => (
                   <div key={category}>
-                    <h3 className="text-xs font-semibold capitalize px-3  text-gray-400">{category}</h3>
+                    <h3 className="px-3 text-xs font-semibold capitalize text-gray-400">
+                      {category}
+                    </h3>
                     {docs.map((doc) => (
                       <div
                         key={doc.id}
+                        onClick={(e) => {
+                          router.push(`/chat/${doc.id}`);
+                        }}
                         className="flex cursor-pointer justify-between rounded-lg p-3 text-white hover:bg-[#212121]"
                       >
                         <button className="text-md">
