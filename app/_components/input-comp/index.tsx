@@ -1,12 +1,18 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { CornerRightUp, Plus } from "lucide-react";
 import { UploadButton } from "../uploadthing";
 import { uploadPdf } from "@/app/_hooks/uploadDocs";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { getLatestDocId } from "@/app/_hooks/getLatest";
 
 export const InputComp = () => {
+
+  const user = useUser();
+  
+  const router = useRouter();
 
   const Uploadbutton = () => (
     <UploadButton
@@ -20,8 +26,11 @@ export const InputComp = () => {
       }}
       appearance={{ button: "bg-transparent w-6 h-6" }}
       config={{ mode: "auto" }}
-      onClientUploadComplete={(res) => {
-        uploadPdf(res[0].url, res[0].name);
+      onClientUploadComplete={async (res) => {
+        await uploadPdf(res[0].url, res[0].name);
+        const userId = await user.user?.id;
+        const docId = await getLatestDocId(userId);
+        router.push(`/chat/${docId}`);
         console.log("Files: ", res[0].url);
       }}
       onUploadError={(error: Error) => {
