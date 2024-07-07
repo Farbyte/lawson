@@ -5,13 +5,13 @@ import { Tabs } from "./tabs";
 export function Typebar() {
   const tabs = [
     {
-      title: "Summary",
+      title: "summary",
     },
     {
-      title: "Chat",
+      title: "chat",
     },
     {
-      title: "Semantic Search",
+      title: "semantic search",
     },
   ];
 

@@ -25,7 +25,7 @@ export const Tabs = ({ tabs }: { tabs: Tab[] }) => {
               className="absolute inset-0 rounded-lg bg-gray-200 dark:bg-[#2F2F2F]"
             />
           )}
-          <span className="relative block text-black dark:text-white">
+          <span className="relative block text-black dark:text-white capitalize">
             {tab.title}
           </span>
         </button>
