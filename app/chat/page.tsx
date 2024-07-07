@@ -1,6 +1,6 @@
 import { InputComp } from "../_components/input-comp";
 import Navbar from "../_components/navbar-comp/Navbar";
-import { Typebar } from "../_components/Typebar";
+import { Typebar } from "../_components/typebar";
 
 export default function Chat() {
   return (
