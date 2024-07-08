@@ -15,8 +15,9 @@ import { useState } from "react";
 
 export interface Doc {
   id: string;
-  fileName: string;
+  userId: string;
   fileUrl: string;
+  fileName: string;
   createdAt: Date;
 }
 

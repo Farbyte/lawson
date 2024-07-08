@@ -1,13 +1,24 @@
-import { Typebar } from "@/app/_components/typebar";
-import { InputComp } from "../../_components/input-comp";
-import Navbar from "../../_components/navbar-comp/Navbar";
+import prisma from '@/utils/prisma';
+import ChatClient from './ChatClient';
+import { currentUser, User } from '@clerk/nextjs/server';
 
-export default function Chat() {
+export default async function Page({ params }: { params: { id: string } }) {
+  const user: User | null = await currentUser();
+
+  const currentDoc = await prisma.document.findFirst({
+    where: {
+      id: params.id,
+      userId: user?.id,
+    },
+  });
+
+  if (!currentDoc) {
+    return <div>This document was not found</div>;
+  }
+
   return (
-    <>
-      <Navbar />
-      <Typebar />
-      <InputComp />
-    </>
+    <div>
+      <ChatClient currentDoc={currentDoc} />
+    </div>
   );
 }
