@@ -7,7 +7,6 @@ import { uploadPdf } from "@/app/_hooks/uploadDocs";
 import { useUser } from "@clerk/nextjs";
 import { usePathname, useRouter } from "next/navigation";
 import { getLatestDocId } from "@/app/_hooks/getLatest";
-import { url } from "inspector";
 
 export const InputComp = () => {
   const user = useUser();
