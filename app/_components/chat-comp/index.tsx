@@ -17,9 +17,6 @@ export const ChatComp = ({
   return (
     activeTab === "summary" && (
       <div className="flex flex-col items-center justify-center">
-        <div className="fixed bottom-2 w-full max-w-2xl">
-          {/* to be done */}
-        </div>
         {isLoadingSummary && (
           <div className="flex items-center justify-center">
             <div>Loading...</div>
@@ -27,9 +24,12 @@ export const ChatComp = ({
           </div>
         )}
         {markdownContent && (
-          <ScrollArea className="mt-4 h-full w-full rounded-md border p-4">
-            {markdownContent}
-          </ScrollArea>
+          <div className="flex flex-col items-start mt-12">
+            <div className="ml-4 border-b-2">Summary </div>
+            <ScrollArea className="h-[80vh] w-[80vw] p-4 pb-[6rem] lg:w-[40vw]">
+              {markdownContent}
+            </ScrollArea>
+          </div>
         )}
         {error && (
           <div className="mt-4 rounded-md border border-red-400">
