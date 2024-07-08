@@ -8,8 +8,16 @@ import { useUser } from "@clerk/nextjs";
 import { usePathname, useRouter } from "next/navigation";
 import { getLatestDocId } from "@/app/_hooks/getLatest";
 import { useTabsStore } from "@/app/_store/tabsStore";
+import { Button } from "@/components/ui/button";
 
-export const InputComp = () => {
+export const InputComp = ({
+  fetchSummary,
+}: {
+  fetchSummary: (
+    type: "large" | "small" | "custom",
+    prompt: string,
+  ) => Promise<void>;
+}) => {
   const user = useUser();
 
   const router = useRouter();
@@ -49,9 +57,9 @@ export const InputComp = () => {
   }
 
   return (
-    activeTab !== "summary" && (
-      <div className="flex flex-col items-center justify-center">
-        <div className="fixed bottom-2 w-full max-w-2xl">
+    <div className="flex flex-col items-center justify-center">
+      <div className="fixed bottom-2 w-full max-w-2xl">
+        {activeTab !== "summary" ? (
           <form className="relative m-auto flex items-center gap-5 overflow-y-auto rounded-[26px] bg-[#2F2F2F] px-3 text-base md:px-5 lg:px-1 xl:px-5">
             <Uploadbutton />
             <Textarea
@@ -66,11 +74,25 @@ export const InputComp = () => {
               <CornerRightUp className="h-6 w-6" />
             </button>
           </form>
-          <p className="mt-4 text-center text-xs text-[#838E94]">
-            Doc ID : {extractId(pathname)}
-          </p>
-        </div>
+        ) : (
+          <div className="relative m-auto flex items-center justify-center gap-5 overflow-y-auto rounded-[26px] px-3 text-base md:px-5 lg:px-1 xl:px-5">
+            <Button onClick={() => fetchSummary("large", "")}>
+              Large Summary
+            </Button>
+            <Button onClick={() => fetchSummary("small", "")}>
+              Small Summary
+            </Button>
+            <Button
+              onClick={() => fetchSummary("custom", "Your custom prompt")}
+            >
+              Custom Summary
+            </Button>
+          </div>
+        )}
+        <p className="mt-4 text-center text-xs text-[#838E94]">
+          Doc ID : {extractId(pathname)}
+        </p>
       </div>
-    )
+    </div>
   );
 };

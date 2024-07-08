@@ -1,6 +1,7 @@
-import prisma from '@/utils/prisma';
-import ChatClient from './ChatClient';
-import { currentUser, User } from '@clerk/nextjs/server';
+import prisma from "@/utils/prisma";
+import ChatClient from "./ChatClient";
+import { currentUser, User } from "@clerk/nextjs/server";
+import Navbar from "@/app/_components/navbar-comp/Navbar";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const user: User | null = await currentUser();
@@ -18,6 +19,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   return (
     <div>
+      <Navbar />
       <ChatClient currentDoc={currentDoc} />
     </div>
   );
