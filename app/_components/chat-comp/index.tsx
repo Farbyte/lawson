@@ -1,10 +1,7 @@
 "use client";
 
-import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { usePathname } from "next/navigation";
 import { useTabsStore } from "@/app/_store/tabsStore";
-import { Doc } from "../navbar-comp/NavSidebar";
 
 export const ChatComp = ({
   isLoadingSummary,
@@ -15,13 +12,7 @@ export const ChatComp = ({
   markdownContent: string;
   error: string;
 }) => {
-  const pathname = usePathname();
   const { activeTab } = useTabsStore();
-
-  function extractId(url: string): string {
-    const id = url.substring(6);
-    return id !== "" ? id : "Not Loaded";
-  }
 
   return (
     activeTab === "summary" && (
