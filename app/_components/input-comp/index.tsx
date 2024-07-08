@@ -75,7 +75,7 @@ export const InputComp = ({
             </button>
           </form>
         ) : (
-          <div className="relative m-auto flex items-center justify-center gap-5 rounded-[26px] px-3 text-base md:px-5 lg:px-1 xl:px-5">
+          <div className="relative flex items-center justify-center gap-1 max-w-2xl rounded-[26px] text-base min-w-0">
             <Button onClick={() => fetchSummary("large", "")}>
               Large Summary
             </Button>
