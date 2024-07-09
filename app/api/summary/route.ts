@@ -28,7 +28,7 @@ export async function POST(req: Request) {
   else if (type == "large") systemTemplate = systemTemplateLong;
   else if (type == "custom") systemTemplate = sysPrompt;
 
-  const pdfile = await fetch(fileUrl);
+  const pdfile: any = await fetch(fileUrl);
 
   const loder = new PDFLoader(pdfile, {
     splitPages: false,

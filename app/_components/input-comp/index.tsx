@@ -10,14 +10,30 @@ import { getLatestDocId } from "@/app/_hooks/getLatest";
 import { useTabsStore } from "@/app/_store/tabsStore";
 import { Button } from "@/components/ui/button";
 
-export const InputComp = ({
-  fetchSummary,
-}: {
-  fetchSummary: (
+interface InputCompProps {
+  handlefetchSummary?: (
     type: "large" | "small" | "custom",
     prompt: string,
-  ) => Promise<void>;
-}) => {
+  ) => void;
+  handleSub?: (e: React.FormEvent<HTMLFormElement>) => void;
+  isLoading?: boolean;
+  input?: string;
+  handleInputChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleEnter?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  textAreaRef?: React.RefObject<HTMLTextAreaElement>;
+  error?: string;
+}
+
+export const InputComp = ({
+  handlefetchSummary = async () => {},
+  handleSub = async () => {},
+  isLoading,
+  input,
+  handleInputChange,
+  handleEnter,
+  textAreaRef,
+  error,
+}: InputCompProps) => {
   const user = useUser();
 
   const router = useRouter();
@@ -42,7 +58,7 @@ export const InputComp = ({
         await uploadPdf(res[0].url, res[0].name);
         const userId = await user.user?.id;
         const docId = await getLatestDocId(userId);
-        router.push(`/chat/${docId}`);
+        router.push(`/chat/summary/${docId}`);
         console.log("Files: ", res[0].url);
       }}
       onUploadError={(error: Error) => {
@@ -52,7 +68,7 @@ export const InputComp = ({
   );
 
   function extractId(url: string): string {
-    const id = url.substring(6);
+    const id = url.substring(14);
     return id !== "" ? id : "Not Loaded";
   }
 
@@ -60,31 +76,43 @@ export const InputComp = ({
     <div className="flex flex-col items-center justify-center">
       <div className="fixed bottom-2 w-full max-w-2xl">
         {activeTab !== "summary" ? (
-          <form className="relative m-auto flex items-center gap-5 overflow-y-auto rounded-[26px] bg-[#2F2F2F] px-3 text-base md:px-5 lg:px-1 xl:px-5">
+          <form
+            className="relative m-auto flex items-center gap-5 overflow-y-auto rounded-[26px] bg-[#2F2F2F] px-3 text-base md:px-5 lg:px-1 xl:px-5"
+            onSubmit={(e) => handleSub(e)}
+          >
             <Uploadbutton />
             <Textarea
               className="min-w-0 flex-1 resize-none overflow-y-auto bg-[#2F2F2F] p-2 text-white placeholder-white outline-none focus:ring-0"
-              placeholder="Ask me anything..."
+              placeholder={
+                isLoading ? "Waiting for response..." : "Ask me anything..."
+              }
+              ref={textAreaRef}
+              autoFocus={false}
+              value={input}
+              onChange={handleInputChange}
+              onKeyDown={handleEnter}
+              maxLength={512}
+              id="userInput"
+              name="userInput"
               rows={1}
             />
             <button
               type="submit"
+              disabled={isLoading}
               className="flex rounded-sm border-none bg-transparent text-white transition duration-300 ease-in-out"
             >
               <CornerRightUp className="h-6 w-6" />
             </button>
           </form>
         ) : (
-          <div className="relative flex items-center justify-center gap-1 max-w-2xl rounded-[26px] text-base min-w-0">
-            <Button onClick={() => fetchSummary("large", "")}>
+          <div className="relative flex min-w-0 max-w-2xl items-center justify-center gap-1 rounded-[26px] text-base">
+            <Button onClick={() => handlefetchSummary("large", "")}>
               Large Summary
             </Button>
-            <Button onClick={() => fetchSummary("small", "")}>
+            <Button onClick={() => handlefetchSummary("small", "")}>
               Small Summary
             </Button>
-            <Button
-              onClick={() => fetchSummary("custom", "Your custom prompt")}
-            >
+            <Button onClick={() => handlefetchSummary("custom", "Our custom prompt")}>
               Custom Summary
             </Button>
           </div>
