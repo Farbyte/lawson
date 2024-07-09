@@ -31,6 +31,7 @@ export default function ChatClient({ currentDoc }: { currentDoc: Doc }) {
       const sourcesHeader = response.headers.get("x-sources");
       console.log("sourcesHeader", sourcesHeader);
       console.log("response", JSON.parse(atob(sourcesHeader as string)));
+      
       const sources = sourcesHeader ? JSON.parse(atob(sourcesHeader)) : [];
 
       const messageIndexHeader = response.headers.get("x-message-index");
