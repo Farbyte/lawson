@@ -2,9 +2,14 @@ import { NextResponse } from "next/server";
 import prisma from "@/utils/prisma";
 import { getAuth } from "@clerk/nextjs/server";
 import { UTApi } from "uploadthing/server";
+import { Pinecone } from "@pinecone-database/pinecone";
 
 export async function DELETE(req: Request) {
   console.log("DELETE CALLED");
+
+  const pinecone = new Pinecone({
+    apiKey: process.env.PINECONE_API_KEY as string,
+  });
 
   const utapi = new UTApi();
 
@@ -30,6 +35,14 @@ export async function DELETE(req: Request) {
     const utfsUrl = fileUrl.split("/")[0];
     const fileName = fileUrl.replace(`${utfsUrl}\f`, "");
     const utapiRes = await utapi.deleteFiles(fileName);
+
+    console.log("deleting pinecone namespace");
+    const index = pinecone.index(process.env.PINECONE_INDEX_NAME as string);
+    try {
+      await index.namespace(id).deleteAll();
+    } catch (e) {
+      console.log(e);
+    }
 
     const prismaRes = await prisma.document.delete({
       where: {

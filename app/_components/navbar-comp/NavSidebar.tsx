@@ -80,7 +80,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
                     <div
                       key={doc.id}
                       onClick={(e) => {
-                        router.push(`/chat/${doc.id}`);
+                        router.push(`/chat/summary/${doc.id}`);
                       }}
                       className="flex cursor-pointer justify-between rounded-lg p-3 text-white hover:bg-[#212121]"
                     >

@@ -1,41 +1,83 @@
 "use client";
 
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { useEffect, useRef } from "react";
+import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 import { useTabsStore } from "@/app/_store/tabsStore";
 
+interface ChatCompProps {
+  isLoading: boolean;
+  messages: any[];
+  sourcesForMessages: Record<string, any>;
+  userProfilePic: string;
+  messageListRef: React.RefObject<HTMLDivElement>;
+}
+
 export const ChatComp = ({
-  isLoadingSummary,
-  markdownContent,
-  error,
-}: {
-  isLoadingSummary: boolean;
-  markdownContent: string;
-  error: string;
-}) => {
+  isLoading,
+  messages,
+  sourcesForMessages,
+  userProfilePic,
+  messageListRef,
+}: ChatCompProps) => {
   const { activeTab } = useTabsStore();
+  console.log("messages", messages);
 
   return (
-    activeTab === "summary" && (
-      <div className="flex flex-col items-center justify-center">
-        {isLoadingSummary && (
-          <div className="flex items-center justify-center">
-            <div>Loading...</div>
-            {/* <LoadingDots color="#000" style="large" /> */}
+    activeTab === "chat" && (
+      <div className="align-center no-scrollbar flex h-[90vh] w-full flex-col justify-between">
+        <div
+          className={`bg-background no-scrollbar flex h-[80vh] min-h-min w-full items-center justify-center sm:h-[85vh]`}
+        >
+          <div
+            ref={messageListRef}
+            className="no-scrollbar mt-4 h-full w-full overflow-y-scroll rounded-md"
+          >
+            {messages.length === 0 && (
+              <div className="flex h-full items-center justify-center text-xl">
+                Ask your first question below!
+              </div>
+            )}
+            
+            {messages.map((message, index) => {
+              const sources = sourcesForMessages[index] || undefined;
+              const isLastMessage = !isLoading && index === messages.length - 1;
+              const previousMessage = index !== messages.length - 1
+              return (
+                <div key={`chatMessage-${index}`}>
+                  <div
+                    className={`text-foreground animate p-4 ${
+                      message.role === "assistant"
+                        ? "bg-background/50"
+                        : isLoading && index === messages.length - 1
+                          ? "bg-background animate-pulse"
+                          : "bg-background"
+                    }`}
+                  >
+                    <div className="flex">
+                      <img
+                        key={index}
+                        src={
+                          message.role === "assistant"
+                            ? "/bot-icon.png"
+                            : userProfilePic
+                        }
+                        alt="profile image"
+                        width={message.role === "assistant" ? 35 : 33}
+                        height={30}
+                        className="mr-4 h-full rounded-sm"
+                        // priority
+                      />
+                      <ReactMarkdown className="prose">
+                        {message.content}
+                      </ReactMarkdown>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        )}
-        {markdownContent && (
-          <div className="flex flex-col items-start mt-12">
-            <div className="ml-4 border-b-2">Summary </div>
-            <ScrollArea className="h-[80vh] w-[80vw] p-4 pb-[6rem] lg:w-[40vw]">
-              {markdownContent}
-            </ScrollArea>
-          </div>
-        )}
-        {error && (
-          <div className="mt-4 rounded-md border border-red-400">
-            <p className="text-red-500">{error}</p>
-          </div>
-        )}
+        </div>
       </div>
     )
   );

@@ -31,7 +31,7 @@ export const RootInput = () => {
         await uploadPdf(res[0].url, res[0].name);
         const userId = await user.user?.id;
         const docId = await getLatestDocId(userId);
-        router.push(`/chat/${docId}`);
+        router.push(`/chat/summary/${docId}`);
         console.log("Files: ", res[0].url);
       }}
       onUploadError={(error: Error) => {
@@ -41,7 +41,7 @@ export const RootInput = () => {
   );
 
   function extractId(url: string): string {
-    const id = url.substring(6);
+    const id = url.substring(14);
     return id !== "" ? id : "Not Loaded";
   }
 
