@@ -12,7 +12,7 @@ import { AlignLeft, Trash } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import { useParams } from "next/navigation";
 export interface Doc {
   id: string;
   userId: string;
@@ -23,8 +23,9 @@ export interface Doc {
 
 export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
   const [docs, setDocs] = useState(initialDocs);
-
+  const [isReady,setReady] = useState(true) 
   const router = useRouter();
+  const params = useParams<{id : string}>();
 
   const truncate = (str: string, length: number, ending = "...") =>
     `${
@@ -34,6 +35,11 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
   const categorizedDocs = useCategorizedDocs(docs);
 
   async function deleteDocument(id: string, fileUrl: string) {
+    if(!isReady){
+      console.log('DELETE ERROR : ALREADY DELETING')
+      return;
+    }
+    setReady(false)
     try {
       const res = await fetch("/api/deletePdf", {
         method: "DELETE",
@@ -55,9 +61,16 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
       } else {
         console.log("Document deleted successfully");
         setDocs(docs.filter((doc) => doc.id !== id));
+        setReady(true)
+        if(params.id  == id){
+          router.push('/chat')
+        }
       }
     } catch (error) {
       console.log("Error deleting pdf", error);
+    } 
+    finally{
+      setReady(true)
     }
   }
 
