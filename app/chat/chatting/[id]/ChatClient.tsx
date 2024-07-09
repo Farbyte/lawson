@@ -29,9 +29,7 @@ export default function ChatClient({ currentDoc }: { currentDoc: Doc }) {
     },
     onResponse(response) {
       const sourcesHeader = response.headers.get("x-sources");
-      console.log("sourcesHeader", sourcesHeader);
-      console.log("response", JSON.parse(atob(sourcesHeader as string)));
-      
+
       const sources = sourcesHeader ? JSON.parse(atob(sourcesHeader)) : [];
 
       const messageIndexHeader = response.headers.get("x-message-index");
@@ -53,7 +51,7 @@ export default function ChatClient({ currentDoc }: { currentDoc: Doc }) {
   const messageListRef = useRef<HTMLDivElement>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleEnter = (e: any) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       if (input.trim()) {
