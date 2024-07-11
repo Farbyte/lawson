@@ -25,13 +25,13 @@ export const ChatComp = ({
 
   return (
     activeTab === "chat" && (
-      <div className="align-center no-scrollbar flex h-[90vh] w-full flex-col justify-between">
+      <div className="align-center flex h-[90vh] w-full flex-col justify-between">
         <div
           className={`bg-background no-scrollbar flex h-[80vh] min-h-min w-full items-center justify-center sm:h-[85vh]`}
         >
           <div
             ref={messageListRef}
-            className="no-scrollbar mt-4 h-full w-full overflow-y-scroll rounded-md"
+            className="mt-4 h-full w-full overflow-y-scroll rounded-md"
           >
             {messages.length === 0 && (
               <div className="flex h-full items-center justify-center text-xl">
