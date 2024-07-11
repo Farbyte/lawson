@@ -96,7 +96,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
                       onClick={(e) => {
                         router.push(`/chat/summary/${doc.id}`);
                       }}
-                      className="flex cursor-pointer justify-between rounded-lg p-3 text-white hover:bg-[#212121]"
+                      className="flex cursor-pointer justify-between rounded-lg p-3 text-black hover:bg-[#E5E7EB] dark:text-white dark:hover:bg-[#212121]"
                     >
                       <button className="text-md">
                         {truncate(doc.fileName, 20)}
@@ -108,7 +108,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
                           toast.success(`Deleted ${doc.fileName}`,{richColors:true});
                         }}
                       >
-                        <Trash className="h-5 w-5 text-red-300 hover:text-red-600" />
+                        <Trash className="h-5 w-5 text-red-400 hover:text-red-600" />
                       </button>
                     </div>
                   ))}
