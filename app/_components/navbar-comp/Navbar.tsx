@@ -27,8 +27,8 @@ export default async function Navbar() {
         lawson.
       </button>
       <div className="flex items-center gap-6">
-        <UploadButtonComp />
         <UserButton />
+        <UploadButtonComp />
       </div>
     </nav>
   );
