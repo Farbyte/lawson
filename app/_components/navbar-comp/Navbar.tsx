@@ -4,6 +4,7 @@ import { currentUser, User } from "@clerk/nextjs/server";
 import prisma from "@/utils/prisma";
 import NewChat from "./newChat";
 import UploadButtonComp from "./UploadButton";
+import { ModeToggle } from "./darkModeToggle";
 
 export default async function Navbar() {
   const user: User | null = await currentUser();
@@ -27,6 +28,7 @@ export default async function Navbar() {
         lawson.
       </button>
       <div className="flex items-center gap-6 pr-3">
+        <ModeToggle />
         <UserButton />
         <UploadButtonComp />
       </div>
