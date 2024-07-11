@@ -68,8 +68,14 @@ export const InputComp = ({
   );
 
   function extractId(url: string): string {
-    const id = url.substring(14);
-    return id !== "" ? id : "Not Loaded";
+    const check = url.substring(0,14);
+    if (check === "/chat/summary/") {
+      const id = url.substring(14);
+      return id !== "" ? id : "Not Loaded";
+    } else {
+      const id = url.substring(15);
+      return id !== "" ? id : "Not Loaded";
+    }
   }
 
   return (
@@ -112,7 +118,9 @@ export const InputComp = ({
             <Button onClick={() => handlefetchSummary("small", "")}>
               Small Summary
             </Button>
-            <Button onClick={() => handlefetchSummary("custom", "Our custom prompt")}>
+            <Button
+              onClick={() => handlefetchSummary("custom", "Our custom prompt")}
+            >
               Custom Summary
             </Button>
           </div>
