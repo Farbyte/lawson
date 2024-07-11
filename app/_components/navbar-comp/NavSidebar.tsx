@@ -73,7 +73,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
       setReady(true)
     }
   }
-
+  //SAD
   return (
     <>
       <Sheet>
