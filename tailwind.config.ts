@@ -18,6 +18,9 @@ const config = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      virgil: ["Virgil", "sans-serif"],
+    },
     extend: {
       keyframes: {
         "accordion-down": {
