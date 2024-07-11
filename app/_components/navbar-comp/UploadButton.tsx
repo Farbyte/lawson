@@ -6,6 +6,7 @@ import { uploadPdf } from "@/app/_hooks/uploadDocs";
 import { getLatestDocId } from "@/app/_hooks/getLatest";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function UploadButtonComp() {
   const user = useUser();
@@ -23,12 +24,17 @@ export default function UploadButtonComp() {
       }}
       appearance={{ button: "bg-transparent w-6 h-6" }}
       config={{ mode: "auto" }}
+      onUploadProgress={(progress) => {
+        toast.loading(`Uploading your document, please wait...`,);
+      }}
       onClientUploadComplete={async (res) => {
         await uploadPdf(res[0].url, res[0].name);
         const userId = user.user?.id;
         const docId = await getLatestDocId(userId);
+        toast.success(`Document uploaded successfully!`);
         router.push(`/chat/summary/${docId}`);
         console.log("Files: ", res[0].url);
+        toast.dismiss();
       }}
       onUploadError={(error: Error) => {
         alert(`ERROR! ${error.message}`);
