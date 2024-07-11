@@ -13,6 +13,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import { toast } from "sonner";
 export interface Doc {
   id: string;
   userId: string;
@@ -104,6 +105,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
                         onClick={(e) => {
                           e.stopPropagation();
                           deleteDocument(doc.id, doc.fileUrl);
+                          toast.success(`Deleted ${doc.fileName}`,{richColors:true});
                         }}
                       >
                         <Trash className="h-5 w-5 text-red-300 hover:text-red-600" />
