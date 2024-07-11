@@ -8,3 +8,8 @@
     src: url("https://excalidraw.com/Virgil.woff2");
   }
 }
+
+::selection {
+  background-color: #0affed;
+  color: rgb(0, 0, 0);
+}
