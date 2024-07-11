@@ -19,14 +19,14 @@ export default async function Navbar() {
 
   return (
     <nav className="mx-5 mt-6 flex justify-between">
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-6 pl-3">
         <NavSidebar initialDocs={docsList} />
         <NewChat />
       </div>
       <button type="button" className="text-bold">
         lawson.
       </button>
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-6 pr-3">
         <UserButton />
         <UploadButtonComp />
       </div>

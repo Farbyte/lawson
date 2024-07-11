@@ -2,37 +2,37 @@ import React from "react";
 
 export const Arrow = () => {
   return (
-    <div className="absolute left-[247px] top-[50px] md:left-[695px] md:top-[60px] lg:left-[1660px]">
+    <div className="absolute hidden lg:block left-[1368px] top-[70px]">
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 179.61 452.27"
-        className="w-[179px] h-[352px] lg:h-[400px]"
+        viewBox="0 0 519.61 494.27"
+        className="h-[394px] w-[490px]"
       >
-        <g strokeLinecap="round">
-          <g transform="translate(10.25 442.05) rotate(0 79 -216)">
+        <g stroke-linecap="round">
+          <g transform="translate(10.246851835027343 484.0541774000973) rotate(0 249 -237)">
             <path
-              d="M-0.25 0.22 C17.17 -23.53, 78.1 -70.44, 104.31 -142.49 C130.52 -214.53, 147.91 -383.82, 157 -432.05 M1.82 -0.72 C19.65 -24.3, 80.41 -69.53, 106.66 -141.21 C132.92 -212.88, 150.56 -382.51, 159.36 -430.77"
+              d="M-0.25 0.22 C72.34 -11.53, 352.44 8.56, 435.31 -70.49 C518.19 -149.53, 486.41 -406.82, 497 -474.05 M1.82 -0.72 C74.82 -12.3, 354.74 9.47, 437.66 -69.21 C520.58 -147.88, 489.06 -405.51, 499.36 -472.77"
               stroke="#838E94"
-              strokeWidth="2"
+              stroke-width="2"
               fill="none"
-            />
+            ></path>
           </g>
-          <g transform="translate(10.25 442.05) rotate(0 79 -216)">
+          <g transform="translate(10.246851835027343 484.0541774000973) rotate(0 249 -237)">
             <path
-              d="M164.42 -406.28 C163.34 -414.38, 160.73 -421.85, 159.36 -430.77 M164.42 -406.28 C162.19 -412.74, 161.63 -419.98, 159.36 -430.77"
+              d="M507.4 -449.09 C505.48 -456.97, 502.03 -464.21, 499.36 -472.77 M507.4 -449.09 C504.3 -455.31, 502.86 -462.31, 499.36 -472.77"
               stroke="#838E94"
-              strokeWidth="2"
+              stroke-width="2"
               fill="none"
-            />
+            ></path>
           </g>
-          <g transform="translate(10.25 442.05) rotate(0 79 -216)">
+          <g transform="translate(10.246851835027343 484.0541774000973) rotate(0 249 -237)">
             <path
-              d="M147.5 -408.76 C151.22 -416.12, 153.41 -422.89, 159.36 -430.77 M147.5 -408.76 C150.29 -414.5, 154.72 -421.01, 159.36 -430.77"
+              d="M490.31 -449.46 C493.23 -457.2, 494.63 -464.33, 499.36 -472.77 M490.31 -449.46 C492.26 -455.58, 495.86 -462.48, 499.36 -472.77"
               stroke="#838E94"
-              strokeWidth="2"
+              stroke-width="2"
               fill="none"
-            />
+            ></path>
           </g>
         </g>
       </svg>
