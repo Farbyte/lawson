@@ -31,13 +31,13 @@ export default function UploadButtonComp() {
         await uploadPdf(res[0].url, res[0].name);
         const userId = user.user?.id;
         const docId = await getLatestDocId(userId);
-        toast.success(`Document uploaded successfully!`);
+        toast.success(`Document uploaded successfully!`,{richColors:true});
         router.push(`/chat/summary/${docId}`);
         console.log("Files: ", res[0].url);
         toast.dismiss();
       }}
       onUploadError={(error: Error) => {
-        alert(`ERROR! ${error.message}`);
+        toast.error(`ERROR! ${error.message}`);
       }}
     />
   );
