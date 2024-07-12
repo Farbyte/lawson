@@ -2,7 +2,7 @@ import React from "react";
 
 export const Arrow = () => {
   return (
-    <div className="absolute hidden lg:block left-[1368px] top-[70px]">
+    <div className="fixed hidden lg:block left-[1368px] top-[70px]">
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
