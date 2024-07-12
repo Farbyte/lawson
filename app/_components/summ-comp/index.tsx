@@ -2,6 +2,8 @@
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTabsStore } from "@/app/_store/tabsStore";
+import ReactMarkdown from "react-markdown";
+import { toast } from "sonner";
 
 export const SummComp = ({
   isLoadingSummary,
@@ -24,18 +26,14 @@ export const SummComp = ({
           </div>
         )}
         {markdownContent && (
-          <div className="flex flex-col items-start mt-12">
+          <div className="mt-12 flex flex-col items-start">
             <div className="ml-4 border-b-2">Summary </div>
             <ScrollArea className="h-[80vh] w-[80vw] p-4 pb-[6rem] lg:w-[40vw]">
-              {markdownContent}
+              <ReactMarkdown>{markdownContent}</ReactMarkdown>
             </ScrollArea>
           </div>
         )}
-        {error && (
-          <div className="mt-4 rounded-md border border-red-400">
-            <p className="text-red-500">{error}</p>
-          </div>
-        )}
+        {error && toast.error(error, { duration:2000 ,closeButton: true })}
       </div>
     )
   );
