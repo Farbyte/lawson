@@ -2,7 +2,7 @@
 
 import { Tabs } from "./tabs";
 
-export function Typebar() {
+export function Typebar({disabled} : {disabled?: boolean}) {
   const tabs = [
     {
       title: "summary",
@@ -17,7 +17,7 @@ export function Typebar() {
 
   return (
     <div className="mt-3 flex w-full flex-col items-center justify-center">
-      <Tabs tabs={tabs} />
+      <Tabs tabs={tabs} disabled={disabled} />
     </div>
   );
 }
