@@ -66,7 +66,7 @@ export default function ChatClient({ currentDoc }: { currentDoc: Doc }) {
     if (activeTab === "summary") {
       router.push(`/chat/summary/${currentDoc.id}`);
     }
-  }, [activeTab, currentDoc.id, router]);
+  }, [activeTab]);
 
   return (
     <>

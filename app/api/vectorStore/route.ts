@@ -11,12 +11,12 @@ export async function POST(req: Request) {
   const { fileUrl, docId } = await req.json();
   const { userId } = await getAuth(req as any);
   console.log("user id to hai");
-  if (!userId) {
-    console.log("user id nai hai");
-    return NextResponse.json({
-      error: "please sign in to add doc",
-    });
-  }
+  // if (!userId) {
+  //   console.log("user id nai hai");
+  //   return NextResponse.json({
+  //     error: "please sign in to add doc",
+  //   });
+  // }
   const res = await prisma.document.findFirst({
     where : {
       id : docId
