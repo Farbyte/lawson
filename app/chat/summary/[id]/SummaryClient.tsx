@@ -24,7 +24,7 @@ export default function SummaryClient({ currentDoc }: { currentDoc: Doc }) {
         const loadingToastId = toast(
           "Loading vector store... Estimated time: 2 min",
         );
-        await vectorStore(currentDoc.fileUrl, currentDoc.id);
+        await vectorStore(currentDoc.fileUrl, currentDoc.id,currentDoc.isLarge);
         toast.success("Vector store loaded successfully", {
           id: loadingToastId,
         });

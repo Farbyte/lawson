@@ -1,6 +1,6 @@
 
 
-export async function vectorStore(fileUrl: string, docId: string) {
+export async function vectorStore(fileUrl: string, docId: string,isLarge : boolean) {
   
   let res = await fetch("/api/vectorStore", {
     method: "POST",
@@ -10,8 +10,9 @@ export async function vectorStore(fileUrl: string, docId: string) {
     body: JSON.stringify({
       fileUrl,
       docId,
+      isLarge,
     }),
   });
 
-  let { success, id , isLarge } = await res.json();
+  let { success, id } = await res.json();
 }

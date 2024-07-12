@@ -5,10 +5,15 @@ import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { loadEmbeddingsModel } from "@/app/api/utils/embeddings";
 import { getAuth } from "@clerk/nextjs/server";
 import prisma from "@/utils/prisma";
+import { Pinecone } from "@pinecone-database/pinecone";
+
+const pinecone = new Pinecone({
+  apiKey : process.env.PINECONE_API_KEY as string
+})
 
 export async function POST(req: Request) {
   console.log("Func called");
-  const { fileUrl, docId } = await req.json();
+  const { fileUrl, docId, isLarge } = await req.json();
   const { userId } = await getAuth(req as any);
   console.log("user id to hai");
   // if (!userId) {
@@ -17,17 +22,24 @@ export async function POST(req: Request) {
   //     error: "please sign in to add doc",
   //   });
   // }
-  const res = await prisma.document.findFirst({
-    where : {
-      id : docId
-    }
-  })
-
+ 
+  
   const utfsUrl = fileUrl.split("/")[0];
   const fileName = fileUrl.replace(`${utfsUrl}\f`, "");
-  const namespace = docId;
   // New namespace for large file
-  const addON = res && res.isLarge ? 'Large' : ''
+  const addON = isLarge ? 'Large' : ''
+  const namespace = docId + addON;
+
+  // Check if we already have embeddings for the file
+  const index = pinecone.Index(process.env.PINECONE_INDEX_NAME as string)
+  const stats = await index.describeIndexStats();
+  if(stats && stats.namespaces && namespace in stats.namespaces){
+    return NextResponse.json({
+      text : "embeddings already present",
+      id : namespace,
+      isLarge : isLarge
+    })
+  } 
   console.log("doc hai = ", namespace);
   try {
     const response = await fetch(fileUrl);
@@ -61,6 +73,6 @@ export async function POST(req: Request) {
   return NextResponse.json({
     text: "successfully added to pinecone",
     id: namespace,
-    isLarge : res ? res.isLarge : false
+    isLarge : isLarge 
   });
 }
