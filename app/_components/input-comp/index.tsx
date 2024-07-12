@@ -54,7 +54,7 @@ export const InputComp = ({
             onSubmit={(e) => handleSub(e)}
           >
             <Textarea
-              className="min-w-0 flex-1 resize-none overflow-y-auto bg-[#F4F4F4] dark:bg-[#2F2F2F] p-2 text-black outline-none focus:ring-0"
+              className="min-w-0 flex-1 resize-none overflow-y-auto bg-[#F4F4F4] dark:bg-[#2F2F2F] dark:text-white p-2 text-black outline-none focus:ring-0"
               placeholder={
                 isLoading ? "Waiting for response..." : "Ask me anything..."
               }
@@ -71,7 +71,7 @@ export const InputComp = ({
             <button
               type="submit"
               disabled={isLoading}
-              className="flex rounded-sm border-none bg-transparent text-black transition duration-300 ease-in-out"
+              className="flex rounded-sm border-none bg-transparent text-black dark:text-white transition duration-300 ease-in-out"
             >
               <CornerRightUp className="h-6 w-6" />
             </button>
