@@ -21,15 +21,13 @@ export default function SummaryClient({ currentDoc }: { currentDoc: Doc }) {
   useEffect(() => {
     const performVectorStoreAndNavigate = async () => {
       if (activeTab === "chat") {
-        const loadingToastId = toast(
+        const loadingToastId = toast.loading(
           "Loading vector store... Estimated time: 2 min",
         );
         await vectorStore(currentDoc.fileUrl, currentDoc.id);
-        toast.success("Vector store loaded successfully", {
-          id: loadingToastId,
-        });
-        toast.dismiss();
+        toast.success("Vector store loaded successfully");
         router.push(`/chat/chatting/${currentDoc.id}`);
+        toast.dismiss();
       }
     };
 
