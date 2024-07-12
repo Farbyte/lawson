@@ -41,10 +41,6 @@ export const ChatComp = ({
             )}
             <ScrollArea>
               {messages.map((message, index) => {
-                const sources = sourcesForMessages[index] || undefined;
-                const isLastMessage =
-                  !isLoading && index === messages.length - 1;
-                const previousMessage = index !== messages.length - 1;
                 return (
                   <div key={`chatMessage-${index}`}>
                     <div

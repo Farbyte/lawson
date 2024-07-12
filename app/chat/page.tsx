@@ -8,6 +8,9 @@ export default function Chat() {
     <>
       <Navbar />
       <Typebar />
+      <div className="flex flex-col items-center justify-center h-[77vh]">
+        <div className="font-virgil text-[#8E8E8E] text-lg md:text-2xl lg:text-4xl">Click on the "+" button to start chatting...</div>
+      </div>
       <RootInput />
     </>
   );
