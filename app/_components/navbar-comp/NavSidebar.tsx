@@ -83,14 +83,14 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
           <AlignLeft />
         </SheetTrigger>
         <SheetContent>
-          <SheetDescription className="mt-[80px] flex flex-col gap-10">
+          <div className="mt-[80px] flex flex-col gap-10">
             {Object.entries(categorizedDocs)
               .filter(([_, docs]) => docs.length > 0)
               .map(([category, docs]) => (
                 <div key={category}>
-                  <h3 className="px-3 text-xs font-semibold capitalize text-gray-400">
+                  <div className="px-3 text-xs font-semibold capitalize text-gray-400">
                     {category}
-                  </h3>
+                  </div>
                   {docs.map((doc) => (
                     <div
                       key={doc.id}
@@ -115,7 +115,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
                   ))}
                 </div>
               ))}
-          </SheetDescription>
+          </div>
         </SheetContent>
       </Sheet>
     </>
