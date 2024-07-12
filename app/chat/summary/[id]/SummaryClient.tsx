@@ -30,6 +30,7 @@ export default function SummaryClient({ currentDoc }: { currentDoc: Doc }) {
         });
         toast.dismiss();
         router.push(`/chat/chatting/${currentDoc.id}`);
+        toast.dismiss();
       }
     };
 
