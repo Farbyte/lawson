@@ -43,9 +43,11 @@ export async function POST(req: NextRequest) {
       .slice(0, -1)
       .map(formatVercelMessages);
     const currentMessageContent = messages[messages.length - 1].content;
+    // New Namespace for large files
     const isLarge = body.isLarge
     const addON = isLarge ? 'Large' : ''
     const chatId = body.chatId+addON;
+    
     console.log('chatID' + chatId)
     console.log('format messages completed ... ')
     const model = new ChatTogetherAI({

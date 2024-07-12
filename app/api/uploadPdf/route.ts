@@ -78,6 +78,7 @@ export async function POST(request: Request) {
   const tokens = await model.getNumTokens(text);
   console.log(`tokens : ${tokens} maxTokens : ${maxTokens}`);
 
+  // Using Fast embedder for large file 
   if (tokens > maxTokens) {
     console.log("max tokens exceeded");
     const res = await fastEmbedder(namespace,fileUrl)

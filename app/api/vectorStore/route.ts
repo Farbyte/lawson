@@ -26,6 +26,7 @@ export async function POST(req: Request) {
   const utfsUrl = fileUrl.split("/")[0];
   const fileName = fileUrl.replace(`${utfsUrl}\f`, "");
   const namespace = docId;
+  // New namespace for large file
   const addON = res && res.isLarge ? 'Large' : ''
   console.log("doc hai = ", namespace);
   try {
