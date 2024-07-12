@@ -5,6 +5,7 @@ import prisma from "@/utils/prisma";
 import NewChat from "./newChat";
 import UploadButtonComp from "./UploadButton";
 import { ModeToggle } from "./darkModeToggle";
+import Link from "next/link";
 
 export default async function Navbar() {
   const user: User | null = await currentUser();
@@ -24,9 +25,9 @@ export default async function Navbar() {
         <NavSidebar initialDocs={docsList} />
         <NewChat />
       </div>
-      <button type="button" className="text-bold">
+      <Link href="/chat" className="text-bold">
         lawson.
-      </button>
+      </Link>
       <div className="flex items-center gap-6 pr-3">
         <ModeToggle />
         <UserButton />
