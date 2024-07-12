@@ -18,8 +18,8 @@ export default function UploadButtonComp() {
       endpoint="pdfUploader"
       content={{
         button({ ready }) {
-          if (ready) return <Plus className="h-5 w-5" />;
-          else return <Plus className="h-5 w-5" />;
+          if (ready) return <Plus className="h-7 w-7 text-black dark:text-white" />;
+          else return <Plus className="h-7 w-7 text-black dark:text-white" />;
         },
       }}
       appearance={{ button: "bg-transparent w-6 h-6" }}

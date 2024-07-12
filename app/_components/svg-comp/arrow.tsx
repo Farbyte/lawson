@@ -2,14 +2,14 @@ import React from "react";
 
 export const Arrow = () => {
   return (
-    <div className="absolute hidden lg:block left-[1368px] top-[70px]">
+    <div className="fixed hidden lg:block left-[1368px] top-[70px]">
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 519.61 494.27"
         className="h-[394px] w-[490px]"
       >
-        <g stroke-linecap="round">
+        <g strokeLinecap="round">
           <g transform="translate(10.246851835027343 484.0541774000973) rotate(0 249 -237)">
             <path
               d="M-0.25 0.22 C72.34 -11.53, 352.44 8.56, 435.31 -70.49 C518.19 -149.53, 486.41 -406.82, 497 -474.05 M1.82 -0.72 C74.82 -12.3, 354.74 9.47, 437.66 -69.21 C520.58 -147.88, 489.06 -405.51, 499.36 -472.77"
