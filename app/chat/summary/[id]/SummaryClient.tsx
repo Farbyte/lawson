@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { InputComp } from "@/app/_components/input-comp";
-import { Doc } from "@/app/_components/navbar-comp/NavSidebar";
-import { Typebar } from "@/app/_components/typebar";
-import { SummComp } from "@/app/_components/summ-comp";
+import { InputComp } from "@/app/_chat_components/input-comp";
+import { Doc } from "@/app/_chat_components/navbar-comp/NavSidebar";
+import { Typebar } from "@/app/_chat_components/typebar";
+import { SummComp } from "@/app/_chat_components/summ-comp";
 import { useTabsStore } from "@/app/_store/tabsStore";
 import { useRouter } from "next/navigation";
 import { fetchSummary } from "@/app/_hooks/fetchSummary";
@@ -24,7 +24,11 @@ export default function SummaryClient({ currentDoc }: { currentDoc: Doc }) {
         const loadingToastId = toast(
           "Loading vector store... Estimated time: 2 min",
         );
-        await vectorStore(currentDoc.fileUrl, currentDoc.id,currentDoc.isLarge);
+        await vectorStore(
+          currentDoc.fileUrl,
+          currentDoc.id,
+          currentDoc.isLarge,
+        );
         toast.success("Vector store loaded successfully", {
           id: loadingToastId,
         });

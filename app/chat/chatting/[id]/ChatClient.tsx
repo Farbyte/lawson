@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { InputComp } from "@/app/_components/input-comp";
-import { Doc } from "@/app/_components/navbar-comp/NavSidebar";
-import { Typebar } from "@/app/_components/typebar";
-import { ChatComp } from "@/app/_components/chat-comp";
+import { InputComp } from "@/app/_chat_components/input-comp";
+import { Doc } from "@/app/_chat_components/navbar-comp/NavSidebar";
+import { Typebar } from "@/app/_chat_components/typebar";
+import { ChatComp } from "@/app/_chat_components/chat-comp";
 import { useTabsStore } from "@/app/_store/tabsStore";
 import { useRouter } from "next/navigation";
 import { useChat } from "ai/react";
@@ -15,40 +15,43 @@ export default function ChatClient({ currentDoc }: { currentDoc: Doc }) {
   const router = useRouter();
   const user = useUser();
 
-  const [sourcesForMessages, setSourcesForMessages] = useState<Record<string, any>>({});
+  const [sourcesForMessages, setSourcesForMessages] = useState<
+    Record<string, any>
+  >({});
   const [error, setError] = useState("");
 
   const chatId = currentDoc.id;
   const pdfUrl = currentDoc.fileUrl;
-  const isLarge = currentDoc.isLarge
+  const isLarge = currentDoc.isLarge;
   const userProfilePic = user.user?.imageUrl || "";
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: "/api/chat",
-    body: {
-      chatId,
-      isLarge
-    },
-    onResponse(response) {
-      const sourcesHeader = response.headers.get("x-sources");
+  const { messages, input, handleInputChange, handleSubmit, isLoading } =
+    useChat({
+      api: "/api/chat",
+      body: {
+        chatId,
+        isLarge,
+      },
+      onResponse(response) {
+        const sourcesHeader = response.headers.get("x-sources");
 
-      const sources = sourcesHeader ? JSON.parse(atob(sourcesHeader)) : [];
+        const sources = sourcesHeader ? JSON.parse(atob(sourcesHeader)) : [];
 
-      const messageIndexHeader = response.headers.get("x-message-index");
-      if (sources.length && messageIndexHeader !== null) {
-        setSourcesForMessages((prevSources) => ({
-          ...prevSources,
-          [messageIndexHeader]: sources,
-        }));
-      }
-    },
-    onError: (e) => {
-      setError(e.message);
-    },
-    onFinish() {
-      // Any additional actions on finish can be handled here
-    },
-  });
+        const messageIndexHeader = response.headers.get("x-message-index");
+        if (sources.length && messageIndexHeader !== null) {
+          setSourcesForMessages((prevSources) => ({
+            ...prevSources,
+            [messageIndexHeader]: sources,
+          }));
+        }
+      },
+      onError: (e) => {
+        setError(e.message);
+      },
+      onFinish() {
+        // Any additional actions on finish can be handled here
+      },
+    });
 
   const messageListRef = useRef<HTMLDivElement>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);

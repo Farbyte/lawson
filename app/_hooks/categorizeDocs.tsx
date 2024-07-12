@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { Doc } from "../_components/navbar-comp/NavSidebar";
+import type { Doc } from "../_chat_components/navbar-comp/NavSidebar";
 
 const isToday = (date: Date) => {
   const today = new Date();
@@ -37,7 +37,9 @@ const isWithinLast30Days = (date: Date) => {
 export const useCategorizedDocs = (docs: Doc[]) => {
   return useMemo(() => {
     const todayDocs = docs.filter((doc) => isToday(new Date(doc.createdAt)));
-    const yesterdayDocs = docs.filter((doc) => isYesterday(new Date(doc.createdAt)));
+    const yesterdayDocs = docs.filter((doc) =>
+      isYesterday(new Date(doc.createdAt)),
+    );
     const last7DaysDocs = docs.filter(
       (doc) =>
         isWithinLast7Days(new Date(doc.createdAt)) &&
@@ -60,11 +62,11 @@ export const useCategorizedDocs = (docs: Doc[]) => {
     );
 
     return {
-      "today": todayDocs,
-      "yesterday": yesterdayDocs,
+      today: todayDocs,
+      yesterday: yesterdayDocs,
       "previous 7 Days": last7DaysDocs,
       "previous 30 Days": last30DaysDocs,
-      "older": olderDocs,
+      older: olderDocs,
     };
   }, [docs]);
 };
