@@ -20,6 +20,7 @@ export interface Doc {
   fileUrl: string;
   fileName: string;
   createdAt: Date;
+  isLarge : boolean
 }
 
 export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {

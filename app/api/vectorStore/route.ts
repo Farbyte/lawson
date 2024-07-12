@@ -4,12 +4,12 @@ import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { loadEmbeddingsModel } from "@/app/api/utils/embeddings";
 import { getAuth } from "@clerk/nextjs/server";
+import prisma from "@/utils/prisma";
 
 export async function POST(req: Request) {
   console.log("Func called");
   const { fileUrl, docId } = await req.json();
   const { userId } = await getAuth(req as any);
-
   console.log("user id to hai");
   if (!userId) {
     console.log("user id nai hai");
@@ -17,10 +17,16 @@ export async function POST(req: Request) {
       error: "please sign in to add doc",
     });
   }
+  const res = await prisma.document.findFirst({
+    where : {
+      id : docId
+    }
+  })
 
   const utfsUrl = fileUrl.split("/")[0];
   const fileName = fileUrl.replace(`${utfsUrl}\f`, "");
   const namespace = docId;
+  const addON = res && res.isLarge ? 'Large' : ''
   console.log("doc hai = ", namespace);
   try {
     const response = await fetch(fileUrl);
@@ -36,8 +42,9 @@ export async function POST(req: Request) {
     console.log("creating vector store ....");
     const embeddings = loadEmbeddingsModel();
     console.log("loading embedding store ....");
+    console.log('namepsace : ' + namespace + addON)
     const store = await loadVectorStore({
-      namespace: namespace,
+      namespace: namespace + addON,
       embeddings,
     });
     console.log("store ....");
@@ -53,5 +60,6 @@ export async function POST(req: Request) {
   return NextResponse.json({
     text: "successfully added to pinecone",
     id: namespace,
+    isLarge : res ? res.isLarge : false
   });
 }

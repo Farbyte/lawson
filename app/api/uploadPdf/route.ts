@@ -13,6 +13,34 @@ async function uploadThingDelete(fileUrl: string) {
   console.log("deleted from uploadthing");
 }
 
+async function fastEmbedder(docId:string,url : string) {
+  try{
+    const api_key =  process.env.EM_API_KEY
+    const res = await fetch(`
+      https://embedder-routes-lawson.onrender.com/emmbed?url=${url}&docId=${docId}&api_key=${api_key}`,{
+      method : 'POST',
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: ''
+    })
+
+    if(res.ok){
+      const data = await res.json()
+      console.log(data)
+      return true
+    }
+    else{
+      console.log(res)
+    }
+    return false
+  }
+  catch(e){
+    console.log('encountered error : ' + e)
+    return false
+  }
+}
+
 export async function POST(request: Request) {
   const { fileUrl, fileName } = await request.json();
 
@@ -22,6 +50,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: "false", id: "None" });
   }
 
+
+  const doc = await prisma.document.create({
+    data: {
+      fileName,
+      fileUrl,
+      userId,
+    },
+  });
+
+  const namespace = doc.id;
   const model = new ChatTogetherAI({
     modelName: "mistralai/Mistral-7B-Instruct-v0.3",
     apiKey: process.env.TO_API_KEY,
@@ -42,20 +80,19 @@ export async function POST(request: Request) {
 
   if (tokens > maxTokens) {
     console.log("max tokens exceeded");
-    console.log("deleting from uploadthing ", fileUrl);
-    await uploadThingDelete(fileUrl);
-    return NextResponse.json({ success: "false", id: "None" });
+    const res = await fastEmbedder(namespace,fileUrl)
+    if(res){
+      const updated = await prisma.document.update({
+        where : {
+          id : namespace,
+        },
+        data : {
+          isLarge : true
+        }
+      })
+      console.log(updated)
+    }
   }
-
-  const doc = await prisma.document.create({
-    data: {
-      fileName,
-      fileUrl,
-      userId,
-    },
-  });
-
-  const namespace = doc.id;
 
   console.log("added to prisma ", namespace);
   console.log(fileUrl);

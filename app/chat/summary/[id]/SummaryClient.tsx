@@ -20,7 +20,7 @@ export default function SummaryClient({ currentDoc }: { currentDoc: Doc }) {
   useEffect(() => {
     if (activeTab === "chat") {
       console.log("useEffect",currentDoc.fileUrl, currentDoc.id);
-      // vectorStore(currentDoc.fileUrl, currentDoc.id);
+       vectorStore(currentDoc.fileUrl, currentDoc.id);
       router.push(`/chat/chatting/${currentDoc.id}`);
     }
   }, [activeTab]);

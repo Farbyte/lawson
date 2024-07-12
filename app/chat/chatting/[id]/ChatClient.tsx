@@ -20,12 +20,14 @@ export default function ChatClient({ currentDoc }: { currentDoc: Doc }) {
 
   const chatId = currentDoc.id;
   const pdfUrl = currentDoc.fileUrl;
+  const isLarge = currentDoc.isLarge
   const userProfilePic = user.user?.imageUrl || "";
 
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: "/api/chat",
     body: {
       chatId,
+      isLarge
     },
     onResponse(response) {
       const sourcesHeader = response.headers.get("x-sources");
