@@ -2,8 +2,8 @@ import { SignIn } from '@clerk/nextjs';
 
 export default function Page() {
   return (
-    <div className="mt-5">
-      <div className="flex mx-auto justify-center items-center mt-10">
+    <div className="-mt-12">
+      <div className="flex mx-auto justify-center items-center h-[100vh]">
         <SignIn
           appearance={{
             elements: {
