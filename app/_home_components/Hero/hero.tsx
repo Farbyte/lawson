@@ -31,10 +31,15 @@ export default function Hero() {
             Get faster <MoveRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="mt-24">
-          <div className="mx-auto max-w-5xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <Image src="/landing-page.png" width={1000} height={500} alt="landing page" />
+        <div className="mx-auto max-w-7xl">
+          <div className="glow-image-wrapper">
+            <Image
+              src="/landing-page.png"
+              width={1000}
+              height={500}
+              alt="landing page"
+              className="glow-image"
+            />
           </div>
         </div>
       </div>
