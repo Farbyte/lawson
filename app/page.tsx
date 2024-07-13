@@ -1,9 +1,10 @@
 import { SignInButton, UserButton } from "@clerk/nextjs";
+import Navbar from "./_home_components/navbar";
 
 export default function Home() {
   return (
-    <main>
-      <SignInButton signUpForceRedirectUrl="/chat" />
+    <main className="bg-black">
+      <Navbar />
     </main>
   );
 }
