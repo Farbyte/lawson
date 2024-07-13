@@ -4,7 +4,7 @@ import { AlignCenter, Clipboard, File, MoveRight, SignalHighIcon, Table, Touchpa
 
 export default function Features() {
   return (
-    <div className="mx-auto mt-40 max-w-7xl px-10 mb-40">
+    <div className="mx-auto mt-40 max-w-7xl px-10">
       <div>
         <h2 className="text-4xl sm:text-6xl">
           Features <br />
