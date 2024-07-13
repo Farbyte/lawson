@@ -11,7 +11,6 @@ export default function Page() {
                 'bg-black hover:bg-gray-700 transition text-sm normal-case',
             },
           }}
-          forceRedirectUrl="/chat"
         />
       </div>
     </div>
