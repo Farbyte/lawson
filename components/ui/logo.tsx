@@ -12,7 +12,7 @@ export default function Logo({
     <Link href="/">
       <div className="items-center flex justify-center">
         <Scale
-          className={`${colorTheme === "light" ? "text-white" : "text-blue-600"} w-5 h-5 ml-5`}
+          className={`${colorTheme === "light" ? "text-white" : "text-blue-600"} w-5 h-5`}
         />
         {type === "iconAndText" && (
           <h3
