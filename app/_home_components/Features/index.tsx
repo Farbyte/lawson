@@ -1,6 +1,6 @@
 import React from "react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { AlignCenter, Clipboard, File, MoveRight, SignalHighIcon, Table, TouchpadIcon } from "lucide-react";
+import { File, MessageCircle } from "lucide-react";
 
 export default function Features() {
   return (
@@ -27,59 +27,43 @@ export function BentoGridDemo() {
           title={item.title}
           description={item.description}
           header={item.header}
-          icon={item.icon}
-          className={`p-4 border rounded-lg ${i === 3 || i === 6 ? "md:col-span-2" : ""}`}
+          className={`p-4 border rounded-lg`}
         />
       ))}
     </BentoGrid>
   );
 }
 
-const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
+// const Skeleton = () => (
+//   <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
+// );
+
+const Summary = () => (
+  <div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 flex items-center justify-center"><div><File className="h-16 w-16 text-neutral-500" /></div></div>
+);
+
+const Chat = () => (
+  <div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 flex items-center justify-center"><div><MessageCircle className="h-16 w-16 text-neutral-500" /></div></div>
+);
+
+const WorkInProgress = () => (
+  <div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 flex items-center justify-center text-neutral-500 text-2xl"><div>Work in progress</div></div>
 );
 
 const items = [
   {
-    title: "The Dawn of Innovation",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
-    header: <Skeleton />,
-    icon: <Clipboard className="h-4 w-4 text-neutral-500" />,
+    title: "One Click Summary",
+    description: "Generate summary of your judgements in one click.",
+    header: <Summary />,
   },
   {
-    title: "The Digital Revolution",
-    description: "Dive into the transformative power of technology.",
-    header: <Skeleton />,
-    icon: <File className="h-4 w-4 text-neutral-500" />,
+    title: "Chat with your Judgement",
+    description: "Chat with your judgements and get personalized feedback.",
+    header: <Chat />,
   },
   {
-    title: "The Art of Design",
-    description: "Discover the beauty of thoughtful and functional design.",
-    header: <Skeleton />,
-    icon: <SignalHighIcon className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Power of Communication",
-    description: "Understand the impact of effective communication in our lives.",
-    header: <Skeleton />,
-    icon: <Table className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Pursuit of Knowledge",
-    description: "Join the quest for understanding and enlightenment.",
-    header: <Skeleton />,
-    icon: <MoveRight className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Joy of Creation",
-    description: "Experience the thrill of bringing ideas to life.",
-    header: <Skeleton />,
-    icon: <TouchpadIcon className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Spirit of Adventure",
-    description: "Embark on exciting journeys and thrilling discoveries.",
-    header: <Skeleton />,
-    icon: <AlignCenter className="h-4 w-4 text-neutral-500" />,
+    title: "Semantic Search",
+    description: "Search for relevant information using semantic search on supreme court judements from 1985.",
+    header: <WorkInProgress />,
   },
 ];
