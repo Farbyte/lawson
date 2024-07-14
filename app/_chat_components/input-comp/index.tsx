@@ -30,7 +30,7 @@ export const InputComp = ({
   textAreaRef,
   error,
 }: InputCompProps) => {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "";
 
   const { activeTab } = useTabsStore();
 

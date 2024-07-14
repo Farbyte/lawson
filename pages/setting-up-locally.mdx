@@ -1,0 +1,79 @@
+import { Callout, Card, Cards, Steps } from "nextra/components";
+
+## Setting up locally
+
+<Steps>
+### Running the project locally
+    To run the project locally, you need to have Node.js installed on your machine. You can download it from [here](https://nodejs.org/en/).
+
+### Clone the repository
+
+Clone the repository to your local machine using the following command:
+
+```bash
+git clone https://github.com/Farbyte/lawson.git
+```
+
+### Install dependencies
+
+Install the project dependencies:
+
+```bash npm2yarn
+npm install
+```
+
+### Create a `.env` file.
+
+Add the following environment variables to the `.env` file:
+
+For the Embedder API key check [here](http://law-son.vercel.app/embedder-api#to-generate-the-embedder-api).
+
+```bash
+// Clerk secrets --------------------------->
+// (Clerk API key)(https://clerk.com/docs/get-started)
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+
+// Uploadthing secrets --------------------->
+// (Uploadthing API key)(https://uploadthing.com)
+UPLOADTHING_SECRET=
+UPLOADTHING_APP_ID=
+
+// Supabase secrets ------------------------>
+// (Supabase API key)(https://supabase.com)
+POSTGRES_URL_NON_POOLING=
+POSTGRES_PRISMA_URL=
+
+// Langchain secrets ----------------------->
+// (Together AI API key)(https://api.together.ai)
+TO_API_KEY=
+
+// System templates ------------------------->
+// (System templates)(Prompts for the LLM)
+SYSTEM_TEMPLATE = 
+SYSTEM_TEMPLATE_LONG = 
+SYSTEM_TEMPLATE_SHORT =
+
+// Pinecone secrets ----------------------->
+// (Pinecone API key)(https://www.pinecone.io)
+PINECONE_API_KEY=
+PINECONE_INDEX_NAME=
+
+// Embedder secrets ----------------------->
+// (Embedder API key)(Check the docs)
+EM_API_KEY=
+```
+
+### Start the development server:
+
+Start the development server by running the following command:
+
+```bash npm2yarn
+npm run dev
+```
+
+### View the project
+Open your browser and navigate to `http://localhost:3000` to view the project.
+</Steps>

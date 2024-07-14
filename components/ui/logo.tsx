@@ -5,14 +5,14 @@ export default function Logo({
   type,
   colorTheme,
 }: {
-  type?: "iconAndText";
+  type?: "iconAndText" | "icon";
   colorTheme?: "light" | "dark";
 }) {
   return (
     <div>
       <div className="flex items-center justify-center">
         <Scale
-          className={`${colorTheme === "light" ? "text-white" : "text-blue-600"} h-5 w-5`}
+          className={`${colorTheme === "light" ? "text-white" : "text-blue-600"} ${type === "icon" ? "h-7 w-7" : "h-5 w-5"}`}
         />
         {type === "iconAndText" && (
           <h3

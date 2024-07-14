@@ -1,0 +1,41 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Embedder API
+
+## What is the Embedder API ?
+
+So togetherAI and almost every other LLM provider has a limit on the number of tokens you can send to the LLM's along with how much token you can get back. This is to prevent the LLM from losing context and generating nonsense. So to get around this we used `K-Means clustering` to cluster the embeddings of the documents and then we used the cluster centroids to generate the embeddings for the documents. This way we can kinda get around the token limit.
+
+## Why do we need the Embedder API ?
+
+We mainly have two backends for the embedder API. One is a multi-threaded server that uses 4 processes to generate the embeddings and other is for the k-means clustering. Two backends mainly due to again free tier's. The render backend has a limited vcpu and ram. So too many requests would cause the server to crash.
+This also means two backend need to be run simultaneously.
+
+## Benefits of the Embedder
+
+The benefits of the embedder are:
+1. It is very fast in generating the embeddings.
+2. It can process almost 1000 pages long `Judgements` in less than 30 seconds.
+3. The summary generated from the `K-Means clustering` is very accurate.
+
+<Callout emoji="🚧">
+Work in progress
+</Callout>
+## To generate the embedder API
+
+<Steps>
+
+### Step 1
+
+Something
+```bash
+npm run something
+```
+
+### Step 2
+
+Something 2
+```bash
+npm run something2
+```
+</Steps>
