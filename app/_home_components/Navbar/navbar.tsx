@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 mb-20 bg-white/90 shadow-sm backdrop-blur-xl dark:bg-black/60">
-      <div className="] flex items-center justify-between px-5">
+      <div className="flex items-center justify-between px-5 ml-6">
         <Logo type="iconAndText" colorTheme="light"/>
         <div>
           <div className="block md:hidden">{/* Mobile menu */}</div>
