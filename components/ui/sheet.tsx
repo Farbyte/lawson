@@ -3,7 +3,7 @@
 import * as React from "react"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
 import { cva, type VariantProps } from "class-variance-authority"
-import { AlignLeft } from "lucide-react"
+import { AlignLeft, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -40,7 +40,7 @@ const sheetVariants = cva(
           "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
         left: "inset-y-0 left-0 h-full w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
         right:
-          "inset-y-0 right-0 h-full w-3/4  border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+          "inset-y-0 right-0 h-full w-3/4 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
       },
     },
     defaultVariants: {
@@ -65,8 +65,20 @@ const SheetContent = React.forwardRef<
       {...props}
     >
       {children}
-      <SheetPrimitive.Close className="absolute left-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:data-[state=open]:bg-[#121212]">
-        <AlignLeft className="h-6 w-6 mt-3 ml-3" />
+      <SheetPrimitive.Close
+        className={cn(
+          "absolute rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:data-[state=open]:bg-[#121212]",
+          {
+            "left-4 top-4": side !== "right",
+            "right-4 top-4": side === "right",
+          }
+        )}
+      >
+        {side === "right" ? (
+          <X className="h-6 w-6 mt-3 mr-3" />
+        ) : (
+          <AlignLeft className="h-6 w-6 mt-3 ml-3" />
+        )}
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>
     </SheetPrimitive.Content>
@@ -79,10 +91,7 @@ const SheetHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn(
-      "flex flex-col space-y-2 text-left",
-      className
-    )}
+    className={cn("flex flex-col space-y-2 text-left", className)}
     {...props}
   />
 )
@@ -93,10 +102,7 @@ const SheetFooter = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn(
-      "flex flex-col-reverse sm:justify-end sm:space-x-2",
-      className
-    )}
+    className={cn("flex flex-col-reverse sm:justify-end sm:space-x-2", className)}
     {...props}
   />
 )

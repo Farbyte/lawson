@@ -5,6 +5,17 @@ import { CornerRightUp } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useTabsStore } from "@/app/_store/tabsStore";
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { useState } from "react";
 
 interface InputCompProps {
   handlefetchSummary?: (
@@ -34,8 +45,14 @@ export const InputComp = ({
 
   const { activeTab } = useTabsStore();
 
+  const [textareaValue, setTextareaValue] = useState("");
+
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTextareaValue(e.target.value);
+  };
+
   function extractId(url: string): string {
-    const check = url.substring(0,14);
+    const check = url.substring(0, 14);
     if (check === "/chat/summary/") {
       const id = url.substring(14);
       return id !== "" ? id : "Not Loaded";
@@ -50,11 +67,11 @@ export const InputComp = ({
       <div className="fixed bottom-2 w-full max-w-2xl">
         {activeTab !== "summary" ? (
           <form
-            className="relative m-auto flex items-center gap-5 overflow-y-auto rounded-[26px] bg-[#F4F4F4] dark:bg-[#2F2F2F] px-3 text-base md:px-5 lg:px-1 xl:px-5"
+            className="relative m-auto flex items-center gap-5 overflow-y-auto rounded-[26px] bg-[#F4F4F4] px-3 text-base dark:bg-[#2F2F2F] md:px-5 lg:px-1 xl:px-5"
             onSubmit={(e) => handleSub(e)}
           >
             <Textarea
-              className="min-w-0 flex-1 resize-none overflow-y-auto bg-[#F4F4F4] dark:bg-[#2F2F2F] dark:text-white p-2 text-black outline-none focus:ring-0"
+              className="min-w-0 flex-1 resize-none overflow-y-auto bg-[#F4F4F4] p-2 text-black outline-none focus:ring-0 dark:bg-[#2F2F2F] dark:text-white"
               placeholder={
                 isLoading ? "Waiting for response..." : "Ask me anything..."
               }
@@ -71,25 +88,59 @@ export const InputComp = ({
             <button
               type="submit"
               disabled={isLoading}
-              className="flex rounded-sm border-none bg-transparent text-black dark:text-white transition duration-300 ease-in-out"
+              className="flex rounded-sm border-none bg-transparent text-black transition duration-300 ease-in-out dark:text-white"
             >
               <CornerRightUp className="h-6 w-6" />
             </button>
           </form>
         ) : (
           <div className="relative flex min-w-0 max-w-2xl items-center justify-center gap-1 rounded-[26px] text-base">
-            <Button onClick={() => handlefetchSummary("large", "")} className="bg-slate-100">
-              Large Summary
-            </Button>
-            <Button onClick={() => handlefetchSummary("small", "")} className="bg-slate-100">
-              Small Summary
-            </Button>
             <Button
-              onClick={() => handlefetchSummary("custom", "Our custom prompt")}
+              onClick={() => handlefetchSummary("large", "")}
               className="bg-slate-100"
             >
-              Custom Summary
+              Large Summary
             </Button>
+            <Button
+              onClick={() => handlefetchSummary("small", "")}
+              className="bg-slate-100"
+            >
+              Small Summary
+            </Button>
+            <Sheet key="bottom">
+              <SheetTrigger asChild>
+                <Button className="">Custom Prompt</Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <SheetHeader>
+                  <SheetTitle>Custom Prompt</SheetTitle>
+                  <SheetDescription>
+                    Add custom prompt here to pass on to the AI while evaluating
+                    your document.
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="grid gap-4 py-4">
+                  <Textarea
+                    className="bg-[#212121] text-black outline-none focus:ring-0 dark:text-white "
+                    rows={5}
+                    value={textareaValue}
+                    onChange={handleTextareaChange}
+                  />
+                </div>
+                <SheetFooter>
+                  <SheetClose asChild>
+                    <Button
+                      type="submit"
+                      onClick={() => {
+                        handlefetchSummary("custom", textareaValue);
+                      }}
+                    >
+                      Save changes
+                    </Button>
+                  </SheetClose>
+                </SheetFooter>
+              </SheetContent>
+            </Sheet>
           </div>
         )}
         <p className="mt-4 text-center text-xs text-gray-700 dark:text-[#838E94]">
