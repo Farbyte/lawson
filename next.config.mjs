@@ -1,3 +1,11 @@
+import nextra from "nextra";
+
+const withNextra = nextra({
+	theme: "nextra-theme-docs",
+	themeConfig: "./theme.config.tsx",
+	defaultShowCopyCode: true,
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	eslint: {
@@ -7,4 +15,4 @@ const nextConfig = {
 	},
 };
 
-export default nextConfig;
+export default withNextra(nextConfig);
