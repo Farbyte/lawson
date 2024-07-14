@@ -5,6 +5,24 @@ import { useTabsStore } from "@/app/_store/tabsStore";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import LoadingDots from "./loading";
+import { Button } from "@/components/ui/button";
+import { jsPDF } from "jspdf";
+
+function downloadPDF(content : string){
+    console.log('creating PDF')
+  if (content){
+    const doc = new jsPDF({
+      orientation : "portrait",
+      format : "a4"
+    })
+    doc.text(content,10,20,{
+      maxWidth : 190,
+      align : "left"
+    })
+    doc.loadFile
+    doc.save("summaryPDF")
+  } 
+}
 
 export const SummComp = ({
   isLoadingSummary,
@@ -27,14 +45,15 @@ export const SummComp = ({
         )}
         {markdownContent && (
           <div className="mt-12 flex flex-col items-start">
+            <Button className="my-4" onClick={() => downloadPDF(markdownContent)}>Get PDF</Button>
             <div className="ml-4 border-b-2">Summary </div>
-            <ScrollArea className="h-[80vh] w-[80vw] p-4 pb-[6rem] lg:w-[40vw]">
+            <ScrollArea className="h-[80vh] w-[80vw] p-4 pb-[6rem] lg:w-[60vw]">
               <ReactMarkdown>{markdownContent}</ReactMarkdown>
             </ScrollArea>
           </div>
         )}
         {error && toast.error(error, { duration:2000 ,closeButton: true })}
       </div>
-    )
+    )   
   );
 };
