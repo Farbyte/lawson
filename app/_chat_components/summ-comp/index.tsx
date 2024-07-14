@@ -4,6 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTabsStore } from "@/app/_store/tabsStore";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
+import LoadingDots from "./loading";
 
 export const SummComp = ({
   isLoadingSummary,
@@ -21,8 +22,7 @@ export const SummComp = ({
       <div className="flex flex-col items-center justify-center">
         {isLoadingSummary && (
           <div className="flex items-center justify-center">
-            <div>Loading...</div>
-            {/* <LoadingDots color="#000" style="large" /> */}
+            <LoadingDots />
           </div>
         )}
         {markdownContent && (
