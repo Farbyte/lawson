@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/48c3747d-e22e-433b-9d53-1f4d8665d6d5)
+![image](https://github.com/user-attachments/assets/dd6f15eb-ee28-454a-b75c-145e853f9b63)
 
 **Lawson** is a tool for lawyers to help them understand judgements faster and more accurately while also being able to query the judgements themselves.
 
