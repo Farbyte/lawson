@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import { useTabsStore } from "@/app/_store/tabsStore";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Clipboard, Speaker, Volume2, Check } from "lucide-react";
+import { toast } from "sonner";
 
 interface ChatCompProps {
   isLoading: boolean;
@@ -26,7 +27,9 @@ export const ChatComp = ({
   const [copiedMessageIndex, setCopiedMessageIndex] = useState<number | null>(null);
 
   const handleSpeak = (text: string) => {
-    if (!window.speechSynthesis) return;
+    if (!window.speechSynthesis) {
+      return toast.error("Your browser does not support speech synthesis.");
+    };
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
   };
