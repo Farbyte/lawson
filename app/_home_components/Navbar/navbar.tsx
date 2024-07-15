@@ -26,7 +26,7 @@ export default function Navbar() {
             Docs
           </Link>
           <div className="flex rounded-md bg-[#262626] px-2 text-center text-white md:px-3 md:py-2">
-            <SignInButton children="Login" forceRedirectUrl="/chat" />
+            <a href="/chat">Login</a>
           </div>
         </ul>
       </div>
