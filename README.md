@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![image](https://github.com/user-attachments/assets/48c3747d-e22e-433b-9d53-1f4d8665d6d5)
 
-## Getting Started
+**Lawson** is a tool for lawyers to help them understand judgements faster and more accurately while also being able to query the judgements themselves.
 
-First, run the development server:
+**Lawson** uses machine learning to extract the most important information from a judgement and present it in a clear and concise way. This allows lawyers to quickly get to the heart of a case and make more informed decisions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+View live site [here](https://law-son.vercel.app/).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Some links
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Lawson website = https://law-son.vercel.app/
+- Github Repo = https://github.com/Farbyte/lawson
+- Lawson Documentation = https://law-son.vercel.app/docs
+- Lawson FAQ = https://law-son.vercel.app/faq
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+- ✅ **Extract key information** from judgements.
+- ✅ **Query judgements** to quickly find the information you need.
+- ✅ **Understand judgements** faster and more accurately.
+- ✅ **Save time** by getting to the heart of a case quickly.
+- ✅ **Summarize or Query** even 1000 pages long pdf's in seconds.
+- ✅ **Improve your legal research** by using machine learning to help you find the information you need.
+- ⏰ **Semantic Search** to find similar judgements of Supreme Court from 1985.
+- ❌ **No more manual reading** of judgements to find the key information.
 
-To learn more about Next.js, take a look at the following resources:
+## Running locally (for developers)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run the project locally, check this [link](https://law-son.vercel.app/setting-up-locally).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Support
 
-## Deploy on Vercel
+If you would like to support us, you can buy me a coffee [here](https://ko-fi.com/avater).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
+Go explore now (totally free for now at least) [here](https://law-son.vercel.app/).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![image](https://github.com/user-attachments/assets/cddc7bab-938b-4c85-a786-0b8e18a29865)
