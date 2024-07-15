@@ -6,12 +6,15 @@ export function Typebar({disabled} : {disabled?: boolean}) {
   const tabs = [
     {
       title: "summary",
+      disabled: false,
     },
     {
       title: "chat",
+      disabled: false,
     },
     {
       title: "semantic search",
+      disabled: true,
     },
   ];
 

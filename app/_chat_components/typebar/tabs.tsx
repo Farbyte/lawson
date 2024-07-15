@@ -6,6 +6,7 @@ import { useState } from "react";
 
 type Tab = {
   title: string;
+  disabled: boolean;
 };
 
 export const Tabs = ({
@@ -25,7 +26,8 @@ export const Tabs = ({
           onClick={() =>
             !disabled ? setActiveTab(tab.title) : setSelectedTab(tab.title)
           }
-          className="relative px-4 py-2"
+          className="relative px-4 py-2 disabled:cursor-not-allowed disabled:opacity-50"
+          disabled={tab.disabled}
         >
           {activeTab === tab.title ? (
             <motion.div
