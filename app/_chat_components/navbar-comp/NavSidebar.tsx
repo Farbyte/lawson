@@ -20,14 +20,14 @@ export interface Doc {
   fileUrl: string;
   fileName: string;
   createdAt: Date;
-  isLarge : boolean
+  isLarge: boolean;
 }
 
 export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
   const [docs, setDocs] = useState(initialDocs);
-  const [isReady,setReady] = useState(true) 
+  const [isReady, setReady] = useState(true);
   const router = useRouter();
-  const params = useParams<{id : string}>();
+  const params = useParams<{ id: string }>();
 
   const truncate = (str: string, length: number, ending = "...") =>
     `${
@@ -37,11 +37,11 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
   const categorizedDocs = useCategorizedDocs(docs);
 
   async function deleteDocument(id: string, fileUrl: string) {
-    if(!isReady){
-      console.log('DELETE ERROR : ALREADY DELETING')
+    if (!isReady) {
+      console.log("DELETE ERROR : ALREADY DELETING");
       return;
     }
-    setReady(false)
+    setReady(false);
     try {
       const res = await fetch("/api/deletePdf", {
         method: "DELETE",
@@ -63,16 +63,15 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
       } else {
         console.log("Document deleted successfully");
         setDocs(docs.filter((doc) => doc.id !== id));
-        setReady(true)
-        if(params.id  == id){
-          router.push('/chat')
+        setReady(true);
+        if (params.id === id) {
+          router.push("/chat");
         }
       }
     } catch (error) {
       console.log("Error deleting pdf", error);
-    } 
-    finally{
-      setReady(true)
+    } finally {
+      setReady(true);
     }
   }
   //SAD
@@ -106,7 +105,9 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
                         onClick={(e) => {
                           e.stopPropagation();
                           deleteDocument(doc.id, doc.fileUrl);
-                          toast.success(`Deleted ${doc.fileName}`,{richColors:true});
+                          toast.success(`Deleted ${doc.fileName}`, {
+                            richColors: true,
+                          });
                         }}
                       >
                         <Trash className="h-5 w-5 text-red-400 hover:text-red-600" />
