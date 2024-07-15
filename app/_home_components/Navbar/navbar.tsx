@@ -22,8 +22,8 @@ export default function Navbar() {
           >
             <Github />
           </Link>
-          <Link href="/docs" className="py-2">
-            Docs
+          <Link href="/faq" className="py-2">
+            Faq
           </Link>
           <div className="flex rounded-md bg-[#262626] px-2 text-center text-white md:px-3 md:py-2">
             <a href="/chat">Login</a>
