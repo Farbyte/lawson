@@ -36,7 +36,13 @@ export default function Footer() {
             <h4 className="text-md font-semibold">Product</h4>
             <ul className="space-y-1 text-sm leading-7">
               <li className="">
-                <a href="/docs/user-manual">User Manual</a>
+                <a href="/docs">User Manual</a>
+              </li>
+              <li className="">
+                <a href="/faq">FAQ</a>
+              </li>
+              <li className="">
+                <a href="/setting-up-locally">Setting Up</a>
               </li>
             </ul>
           </div>
