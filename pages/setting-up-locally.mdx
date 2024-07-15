@@ -2,10 +2,14 @@ import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ## Setting up locally
 
-<Steps>
-### Running the project locally
-    To run the project locally, you need to have Node.js installed on your machine. You can download it from [here](https://nodejs.org/en/).
+### Pre-requisites
 
+1. Node.js - You can download it from [here](https://nodejs.org/en/).
+2. Python - You can download it from [here](https://www.python.org/downloads/).
+
+### Steps to setup the project locally :
+
+<Steps>
 ### Clone the repository
 
 Clone the repository to your local machine using the following command:
@@ -18,15 +22,31 @@ git clone https://github.com/Farbyte/lawson.git
 
 Install the project dependencies:
 
+1. For the frontend
+
 ```bash npm2yarn
 npm install
+```
+
+<Callout>
+  Please setup a venv for the backend. It makes it a lot easier to manage
+  dependencies.
+</Callout>
+
+2. For the backend
+
+```bash
+cd backend
+python3 -m venv myenv
+source myenv/bin/activate
+pip install -r requirements.txt
 ```
 
 ### Create a `.env` file.
 
 Add the following environment variables to the `.env` file:
 
-For the Embedder API key check [here](http://law-son.vercel.app/embedder-api#to-generate-the-embedder-api).
+1. For the frontend
 
 ```bash
 // Clerk secrets --------------------------->
@@ -52,8 +72,8 @@ TO_API_KEY=
 
 // System templates ------------------------->
 // (System templates)(Prompts for the LLM)
-SYSTEM_TEMPLATE = 
-SYSTEM_TEMPLATE_LONG = 
+SYSTEM_TEMPLATE =
+SYSTEM_TEMPLATE_LONG =
 SYSTEM_TEMPLATE_SHORT =
 
 // Pinecone secrets ----------------------->
@@ -62,18 +82,76 @@ PINECONE_API_KEY=
 PINECONE_INDEX_NAME=
 
 // Embedder secrets ----------------------->
-// (Embedder API key)(Check the docs)
+EMBEDDER_URL=
 EM_API_KEY=
+```
+
+<Callout>
+  The `Embedder API` and the `Pinecone API` key must match in the backend and
+  frontend.
+</Callout>
+
+2. For the backend (Enter the `Backend` directory first and initialize the virtual environment).
+
+<Callout>
+  The `Embedder URL` is the URL of the backend. The `Embedder API` key can be
+  any random string.
+</Callout>
+<Callout>
+  Its important so the `Embedder API` key can be any random `String`.
+</Callout>
+
+Make another `.env` file in the `backend` directory and add the following environment variables to it:
+
+```bash
+// Together AI secrets ----------------------->
+// (Together AI API key)(https://api.together.ai)
+TOGETHER_KEY_1=
+TOGETHER_KEY_2=
+TOGETHER_KEY_3=
+TOGETHER_KEY_4=
+// Embedder secrets ----------------------->
+// Have to be set to the same value as the one in the frontend
+API_KEY=
+// Pinecone secrets ----------------------->
+// (Pinecone API key)(https://www.pinecone.io)
+// Have to be set to the same value as the one in the frontend
+PINECONE_API_KEY=
 ```
 
 ### Start the development server:
 
 Start the development server by running the following command:
 
+1. For the frontend
+
 ```bash npm2yarn
 npm run dev
 ```
 
+2. For the backend
+
+<Callout>
+  The backend is a FastAPI server. So you need to run it in a separate terminal.
+</Callout>
+
+```bash
+cd backend
+fastapi dev main.py
+```
+
 ### View the project
+
 Open your browser and navigate to `http://localhost:3000` to view the project.
+
+The backend is running at `http://localhost:8000`. (Have to be changed)
+
+</Steps>
+
+### Alternate Backend Setup (Docker)
+
+If you want to run the backend in a docker container, you can do so by following these steps:
+
+<Steps>
+### To be Done
 </Steps>
