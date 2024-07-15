@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { toast } from "sonner";
+
 export interface Doc {
   id: string;
   userId: string;
@@ -27,7 +28,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
   const [docs, setDocs] = useState(initialDocs);
   const [isReady, setReady] = useState(true);
   const router = useRouter();
-  const params = useParams<{ id: string }>();
+  const params = useParams<{id : string}>();
 
   const truncate = (str: string, length: number, ending = "...") =>
     `${
@@ -55,7 +56,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
       });
 
       if (!res.ok) {
-        throw new Error("failed to delete document");
+        throw new Error("Failed to delete document");
       }
       const data = await res.json();
       if (data.error) {
@@ -64,7 +65,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
         console.log("Document deleted successfully");
         setDocs(docs.filter((doc) => doc.id !== id));
         setReady(true);
-        if (params.id === id) {
+        if (params && params.id === id) {
           router.push("/chat");
         }
       }
@@ -74,7 +75,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
       setReady(true);
     }
   }
-  //SAD
+
   return (
     <>
       <Sheet>
@@ -93,7 +94,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
                   {docs.map((doc) => (
                     <div
                       key={doc.id}
-                      onClick={(e) => {
+                      onClick={() => {
                         router.push(`/chat/summary/${doc.id}`);
                       }}
                       className="flex cursor-pointer justify-between rounded-lg p-3 text-black hover:bg-[#E5E7EB] dark:text-white dark:hover:bg-[#212121]"
