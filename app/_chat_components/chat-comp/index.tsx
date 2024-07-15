@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { useTabsStore } from "@/app/_store/tabsStore";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Clipboard, Speaker, Volume2, Check } from "lucide-react";
 
 interface ChatCompProps {
   isLoading: boolean;
@@ -22,7 +23,25 @@ export const ChatComp = ({
   messageListRef,
 }: ChatCompProps) => {
   const { activeTab } = useTabsStore();
-  console.log("messages", messages);
+  const [copiedMessageIndex, setCopiedMessageIndex] = useState<number | null>(null);
+
+  const handleSpeak = (text: string) => {
+    if (!window.speechSynthesis) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const handleCopy = (text: string, index: number) => {
+    navigator.clipboard.writeText(text).then(
+      () => {
+        setCopiedMessageIndex(index);
+        setTimeout(() => setCopiedMessageIndex(null), 2000);
+      },
+      (err) => {
+        console.error('Failed to copy text: ', err);
+      }
+    );
+  };
 
   return (
     activeTab === "chat" && (
@@ -36,7 +55,7 @@ export const ChatComp = ({
           >
             {messages.length === 0 && (
               <div className="flex h-full items-center justify-center text-xl">
-                Ask your first question below !
+                Ask your first question below!
               </div>
             )}
             <ScrollArea>
@@ -63,11 +82,29 @@ export const ChatComp = ({
                           alt="profile image"
                           width={message.role === "assistant" ? 33 : 33}
                           height={30}
-                          className="mr-4 h-full rounded-sm"
+                          className="mr-4 h-full rounded-full"
                         />
-                        <ReactMarkdown className="prose">
-                          {message.content}
-                        </ReactMarkdown>
+                        <div className="flex flex-col gap-5">
+                          {message.role === "assistant" && (
+                            <div className="flex items-center justify-end gap-6">
+                              {copiedMessageIndex === index ? (
+                                <Check className="text-green-500" />
+                              ) : (
+                                <Clipboard
+                                  className="hover:bg-gray-200 hover:text-black cursor-pointer rounded-md"
+                                  onClick={() => handleCopy(message.content, index)}
+                                />
+                              )}
+                              <Volume2
+                                className="hover:bg-gray-200 hover:text-black cursor-pointer rounded-md"
+                                onClick={() => handleSpeak(message.content)}
+                              />
+                            </div>
+                          )}
+                          <ReactMarkdown className="prose">
+                            {message.content}
+                          </ReactMarkdown>
+                        </div>
                       </div>
                     </div>
                   </div>
