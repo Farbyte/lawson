@@ -1,9 +1,55 @@
-# FAQ
+import { Callout, Card, Cards, Steps } from "nextra/components";
+import { MessageSquare, LaptopMinimal, Volume2 } from "lucide-react";
 
-## Why is Lawson useful ?
+<Callout>
+  Lawson works due to the generous free tiers of various cloud services. Please
+  don't abuse this privilege.
+</Callout>
 
-Lawson is useful because it is a tool that can be used to generate summaries of legal documents. It can also be used to chat with the legal documents to easily get the important information.
+<Steps>
 
-## Why was it built ?
+### Why is Lawson useful?
 
-It was built mainly for the purpose of participating in the Hashnode [AI for tommorow hackathon](https://hashnode.com/hackathons/ai-for-tomorrow).
+Lawson is a valuable tool for generating summaries of legal documents. It also allows users to chat with these documents to easily extract important information.
+
+### Why was it built?
+
+Lawson was developed to participate in the Hashnode [AI for Tomorrow Hackathon](https://hashnode.com/hackathons/ai-for-tomorrow).
+
+### Till when will Lawson be available? Will it be free?
+
+Honestly, we don't know. Right now lawson is running on the free tier of the following services:
+
+1. [Clerk](https://clerk.com)
+2. [Pinecone](https://www.pinecone.io)
+3. [Supabase](https://supabase.com)
+4. [Together AI](https://api.together.ai)
+5. [Uploadthing](https://uploadthing.com)
+6. [Render](https://render.com)
+
+So it definitely wont be free forever. But it will be free till the end of the free tier of these services.
+
+### Why is there an embedder URL and API?
+
+The embedder URL and API are for a separate backend used for K-Means summarization of larger documents, which are generally too large for token limits.
+
+1. The embedder URL is the URL of the backend used by the embedder API.
+2. The embedder API uses an RSA key for request verification.
+
+### Why does the chat take 1-2 minutes to load?
+
+The chat takes 1-2 minutes to load because it needs to generate document embeddings, store them in a vector database, and then use these embeddings to generate responses.
+
+### What should I do if `Speak Aloud 🔊` gives me an error?
+
+If you encounter an error with `Speak Aloud` , it might be due to browser incompatibility. Try using a different browser or enabling the feature in your current browser's settings.
+
+### Why are my uploads very slow?
+
+Uploads can be slow if your file exceeds the token limit of 32,000 tokens. In such cases, we set up your vectors during the upload process, which can take time due to the use of K-Means clustering and embedding generation. And that calls an external server that can be slow to boot up `due to cold boot`. Thank you [Render](https://render.com) for the free tier. Also thank you for your patience.
+
+### What should I do if my uploads are not showing up?
+
+If your uploads are not showing up, try refreshing the page. If the issue persists, please open an issue [here](https://github.com/Farbyte/lawson/issues).
+
+</Steps>
