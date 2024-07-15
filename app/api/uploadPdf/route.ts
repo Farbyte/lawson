@@ -17,7 +17,7 @@ async function fastEmbedder(docId:string,url : string) {
   try{
     const api_key =  process.env.EM_API_KEY
     const res = await fetch(
-      `${process.env.EMBEDDER_URL as string}?url=${url}&docId=${docId}&api_key=${api_key}`,{
+      `${process.env.EMBEDDER_URL as string}/emmbed?url=${url}&docId=${docId}&api_key=${api_key}`,{
       method : 'POST',
       headers: {
         "Content-type": "application/json",
