@@ -1,6 +1,6 @@
 export default {
   logo: <span>lawson.</span>,
-  docsRepositoryBase: "https://github.com/Farbyte/lawson/tree/main/page/docs",
+  docsRepositoryBase: "https://github.com/Farbyte/lawson/tree/main/",
   project: {
     link: "https://github.com/Farbyte/lawson",
   },
