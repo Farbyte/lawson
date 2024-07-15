@@ -30,7 +30,7 @@ To run the project locally, check this [link](https://law-son.vercel.app/setting
 
 ## Support
 
-If you would like to support us, you can buy me a coffee [here](https://ko-fi.com/avater).
+If you would like to support us, you can buy us a coffee [here](https://ko-fi.com/avater).
 
 ---
 Go explore now (totally free for now at least) [here](https://law-son.vercel.app/).
