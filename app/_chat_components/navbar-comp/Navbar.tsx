@@ -6,6 +6,7 @@ import NewChat from "./newChat";
 import UploadButtonComp from "./UploadButton";
 import { ModeToggle } from "./darkModeToggle";
 import Link from "next/link";
+import { Scale } from "lucide-react";
 
 export default async function Navbar() {
   const user: User | null = await currentUser();
@@ -25,8 +26,9 @@ export default async function Navbar() {
         <NavSidebar initialDocs={docsList} />
         <NewChat />
       </div>
-      <Link href="/chat" className="text-bold">
-        lawson.
+      <Link href="/chat" className="text-bold flex items-center">
+        <div className="hidden md:block">lawson.</div>
+        <Scale className="md:hidden"/>
       </Link>
       <div className="flex items-center gap-6 pr-3">
         <ModeToggle />
