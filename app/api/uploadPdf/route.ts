@@ -13,31 +13,31 @@ async function uploadThingDelete(fileUrl: string) {
   console.log("deleted from uploadthing");
 }
 
-async function fastEmbedder(docId:string,url : string) {
-  try{
-    const api_key =  process.env.EM_API_KEY
+async function fastEmbedder(docId: string, url: string) {
+  try {
+    const api_key = process.env.EM_API_KEY;
     const res = await fetch(
-      `${process.env.EMBEDDER_URL as string}/emmbed?url=${url}&docId=${docId}&api_key=${api_key}`,{
-      method : 'POST',
-      headers: {
-        "Content-type": "application/json",
+      `${process.env.EMBEDDER_URL as string}/emmbed?url=${url}&docId=${docId}&api_key=${api_key}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: "",
       },
-      body: ''
-    })
+    );
 
-    if(res.ok){
-      const data = await res.json()
-      console.log(data)
-      return true
+    if (res.ok) {
+      const data = await res.json();
+      console.log(data);
+      return true;
+    } else {
+      console.log(res);
     }
-    else{
-      console.log(res)
-    }
-    return false
-  }
-  catch(e){
-    console.log('encountered error : ' + e)
-    return false
+    return false;
+  } catch (e) {
+    console.log("encountered error : " + e);
+    return false;
   }
 }
 
@@ -49,7 +49,6 @@ export async function POST(request: Request) {
   if (!userId) {
     return NextResponse.json({ success: "false", id: "None" });
   }
-
 
   const doc = await prisma.document.create({
     data: {
@@ -78,20 +77,20 @@ export async function POST(request: Request) {
   const tokens = await model.getNumTokens(text);
   console.log(`tokens : ${tokens} maxTokens : ${maxTokens}`);
 
-  // Using Fast embedder for large file 
+  // Using Fast embedder for large file
   if (tokens > maxTokens) {
     console.log("max tokens exceeded");
-    const res = await fastEmbedder(namespace,fileUrl)
-    if(res){
+    const res = await fastEmbedder(namespace, fileUrl);
+    if (res) {
       const updated = await prisma.document.update({
-        where : {
-          id : namespace,
+        where: {
+          id: namespace,
         },
-        data : {
-          isLarge : true
-        }
-      })
-      console.log(updated)
+        data: {
+          isLarge: true,
+        },
+      });
+      console.log(updated);
     }
   }
 

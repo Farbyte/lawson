@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
-import {PDFLoader} from "@langchain/community/document_loaders/fs/pdf"
+import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { ChatTogetherAI } from "@langchain/community/chat_models/togetherai";
 import { getAuth } from "@clerk/nextjs/server";
 
