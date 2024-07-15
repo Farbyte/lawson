@@ -5,7 +5,7 @@ import { CornerRightUp } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export const RootInput = () => {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "";
 
   function extractId(url: string): string {
     const id = url.substring(14);
