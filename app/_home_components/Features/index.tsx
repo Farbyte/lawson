@@ -20,14 +20,14 @@ export default function Features() {
 
 export function BentoGridDemo() {
   return (
-    <BentoGrid className="max-w-7xl mx-auto mt-8">
+    <BentoGrid className="mx-auto mt-8 max-w-7xl">
       {items.map((item, i) => (
         <BentoGridItem
           key={i}
           title={item.title}
           description={item.description}
           header={item.header}
-          className={`p-4 border rounded-lg`}
+          className={`rounded-lg border p-4`}
         />
       ))}
     </BentoGrid>
@@ -39,15 +39,25 @@ export function BentoGridDemo() {
 // );
 
 const Summary = () => (
-  <div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 flex items-center justify-center"><div><File className="h-16 w-16 text-neutral-500" /></div></div>
+  <div className="flex h-full min-h-[6rem] w-full flex-1 items-center justify-center rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800">
+    <div>
+      <File className="h-16 w-16 text-neutral-500" />
+    </div>
+  </div>
 );
 
 const Chat = () => (
-  <div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 flex items-center justify-center"><div><MessageCircle className="h-16 w-16 text-neutral-500" /></div></div>
+  <div className="flex h-full min-h-[6rem] w-full flex-1 items-center justify-center rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800">
+    <div>
+      <MessageCircle className="h-16 w-16 text-neutral-500" />
+    </div>
+  </div>
 );
 
 const WorkInProgress = () => (
-  <div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 flex items-center justify-center text-neutral-500 text-2xl"><div>Work in progress</div></div>
+  <div className="flex h-full min-h-[6rem] w-full flex-1 items-center justify-center rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-100 text-2xl text-neutral-500 dark:from-neutral-900 dark:to-neutral-800">
+    <div>Work in progress</div>
+  </div>
 );
 
 const items = [
@@ -63,7 +73,8 @@ const items = [
   },
   {
     title: "Semantic Search",
-    description: "Search for relevant information using semantic search on supreme court judements from 1985.",
+    description:
+      "Search for relevant information using semantic search on supreme court judements from 1985.",
     header: <WorkInProgress />,
   },
 ];

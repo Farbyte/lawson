@@ -45,14 +45,14 @@ export const SummComp = ({
           </div>
         )}
         {markdownContent && (
-          <div className="md:mt-12 mt-2 flex flex-col items-start">
-            <div className="flex items-center justify-between w-full pr-16">
+          <div className="mt-2 flex flex-col items-start md:mt-12">
+            <div className="flex w-full items-center justify-between pr-16">
               <div className="ml-4 border-b-2 text-lg">Summary </div>
               <button
-                className="my-4 dark:bg-[#4e4c4c] bg-gray-200 text-black hover:bg-gray-300 dark:text-white dark:hover:bg-[#2F2F2F] p-2 rounded-md flex items-center gap-1 text-sm"
+                className="my-4 flex items-center gap-1 rounded-md bg-gray-200 p-2 text-sm text-black hover:bg-gray-300 dark:bg-[#4e4c4c] dark:text-white dark:hover:bg-[#2F2F2F]"
                 onClick={() => downloadPDF(markdownContent)}
               >
-                <Clipboard className="w-4 h-4" />
+                <Clipboard className="h-4 w-4" />
                 Get PDF
               </button>
             </div>

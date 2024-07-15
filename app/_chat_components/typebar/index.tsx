@@ -2,7 +2,7 @@
 
 import { Tabs } from "./tabs";
 
-export function Typebar({disabled} : {disabled?: boolean}) {
+export function Typebar({ disabled }: { disabled?: boolean }) {
   const tabs = [
     {
       title: "summary",
