@@ -36,7 +36,7 @@ export function Beam({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "bg-background relative flex h-[300px] md:h-[500px] w-full items-center justify-center overflow-hidden rounded-lg border border-white/[0.2] p-10 md:shadow-xl",
+        "bg-background relative flex h-[300px] w-full items-center justify-center overflow-hidden rounded-lg border border-white/[0.2] p-10 md:h-[500px] md:shadow-xl",
         className,
       )}
       ref={containerRef}

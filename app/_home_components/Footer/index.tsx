@@ -14,8 +14,8 @@ export default function Footer() {
                 </Link>
               </div>
               <div>
-                <div className="focus:ring-ring text-foreground inline-flex items-center ml-2 mb-2 rounded-md border-[0.5px] px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 dark:border-white/[0.2]">
-                  <div className="relative flex items-center justify-center mr-2">
+                <div className="focus:ring-ring text-foreground mb-2 ml-2 inline-flex items-center rounded-md border-[0.5px] px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 dark:border-white/[0.2]">
+                  <div className="relative mr-2 flex items-center justify-center">
                     <div className="absolute h-2 w-2 animate-ping rounded-full bg-emerald-400"></div>
                     <div className="relative h-2 w-2 rounded-full bg-emerald-500"></div>
                   </div>

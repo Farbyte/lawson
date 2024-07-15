@@ -17,10 +17,8 @@ export default function Hero() {
           </h1>
           <p className="mt-10 text-center text-2xl text-gray-700 dark:text-gray-300">
             Just upload your{" "}
-            <code className="dark:text-red-400">
-              "Judgements"
-            </code>{" "}
-            pdf and chat with it in seconds.
+            <code className="dark:text-red-400">"Judgements"</code> pdf and chat
+            with it in seconds.
             <br /> Get a summary of a 1000 page case in seconds.
           </p>
         </div>
@@ -33,13 +31,16 @@ export default function Hero() {
           </Link>
         </div>
         <div className="mx-auto max-w-7xl">
-          <div className="relative mt-32 rounded-xl before:absolute before:top-0 before:left-0 before:w-full before:h-[20%] before:content-[''] before:bg-gradient-to-b before:from-[rgba(136,19,55,0.8)] before:via-[rgba(136,19,55,0.8)] before:to-transparent before:blur-[70px] before:opacity-100 before:pointer-events-none after:absolute after:bottom-0 after:left-0 after:w-full after:h-[25%] after:content-[''] after:bg-gradient-to-t after:from-black after:via-black/50 after:to-transparent after:opacity-100 after:pointer-events-none after:z-20" style={{perspective: "2000px"}}>
+          <div
+            className="relative mt-32 rounded-xl before:pointer-events-none before:absolute before:left-0 before:top-0 before:h-[20%] before:w-full before:bg-gradient-to-b before:from-[rgba(136,19,55,0.8)] before:via-[rgba(136,19,55,0.8)] before:to-transparent before:opacity-100 before:blur-[70px] before:content-[''] after:pointer-events-none after:absolute after:bottom-0 after:left-0 after:z-20 after:h-[25%] after:w-full after:bg-gradient-to-t after:from-black after:via-black/50 after:to-transparent after:opacity-100 after:content-['']"
+            style={{ perspective: "2000px" }}
+          >
             <Image
               src="/landing-page.png"
               width={1000}
               height={500}
               alt="landing page"
-              className="block w-full h-auto rounded-xl object-contain relative z-2 glow-image"
+              className="z-2 glow-image relative block h-auto w-full rounded-xl object-contain"
             />
             <BorderBeam className="z-10" size={250} duration={12} delay={9} />
           </div>
