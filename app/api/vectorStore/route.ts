@@ -8,8 +8,8 @@ import prisma from "@/utils/prisma";
 import { Pinecone } from "@pinecone-database/pinecone";
 
 const pinecone = new Pinecone({
-  apiKey : process.env.PINECONE_API_KEY as string
-})
+  apiKey: process.env.PINECONE_API_KEY as string,
+});
 
 export async function POST(req: Request) {
   console.log("Func called");
@@ -22,24 +22,23 @@ export async function POST(req: Request) {
   //     error: "please sign in to add doc",
   //   });
   // }
- 
-  
+
   const utfsUrl = fileUrl.split("/")[0];
   const fileName = fileUrl.replace(`${utfsUrl}\f`, "");
   // New namespace for large file
-  const addON = isLarge ? 'Large' : ''
+  const addON = isLarge ? "Large" : "";
   const namespace = docId + addON;
 
   // Check if we already have embeddings for the file
-  const index = pinecone.Index(process.env.PINECONE_INDEX_NAME as string)
+  const index = pinecone.Index(process.env.PINECONE_INDEX_NAME as string);
   const stats = await index.describeIndexStats();
-  if(stats && stats.namespaces && namespace in stats.namespaces){
+  if (stats && stats.namespaces && namespace in stats.namespaces) {
     return NextResponse.json({
-      text : "embeddings already present",
-      id : namespace,
-      isLarge : isLarge
-    })
-  } 
+      text: "embeddings already present",
+      id: namespace,
+      isLarge: isLarge,
+    });
+  }
   console.log("doc hai = ", namespace);
   try {
     const response = await fetch(fileUrl);
@@ -55,7 +54,7 @@ export async function POST(req: Request) {
     console.log("creating vector store ....");
     const embeddings = loadEmbeddingsModel();
     console.log("loading embedding store ....");
-    console.log('namepsace : ' + namespace + addON)
+    console.log("namepsace : " + namespace + addON);
     const store = await loadVectorStore({
       namespace: namespace + addON,
       embeddings,
@@ -73,6 +72,6 @@ export async function POST(req: Request) {
   return NextResponse.json({
     text: "successfully added to pinecone",
     id: namespace,
-    isLarge : isLarge 
+    isLarge: isLarge,
   });
 }
