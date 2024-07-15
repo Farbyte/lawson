@@ -35,4 +35,5 @@ If you would like to support us, you can buy me a coffee [here](https://ko-fi.co
 ---
 Go explore now (totally free for now at least) [here](https://law-son.vercel.app/).
 
+![image](https://github.com/user-attachments/assets/1193e54e-903d-4638-9762-008d0ef83d8f)
 ![image](https://github.com/user-attachments/assets/cddc7bab-938b-4c85-a786-0b8e18a29865)
