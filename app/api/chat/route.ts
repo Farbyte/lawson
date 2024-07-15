@@ -38,18 +38,18 @@ export async function POST(req: NextRequest) {
     if (!messages.length) {
       throw new Error("No messages provided.");
     }
-    console.log('message formater called...')
+    console.log("message formater called...");
     const formattedPreviousMessages = messages
       .slice(0, -1)
       .map(formatVercelMessages);
     const currentMessageContent = messages[messages.length - 1].content;
     // New Namespace for large files
-    const isLarge = body.isLarge
-    const addON = isLarge ? 'Large' : ''
-    const chatId = body.chatId+addON;
-    
-    console.log('chatID' + chatId)
-    console.log('format messages completed ... ')
+    const isLarge = body.isLarge;
+    const addON = isLarge ? "Large" : "";
+    const chatId = body.chatId + addON;
+
+    console.log("chatID" + chatId);
+    console.log("format messages completed ... ");
     const model = new ChatTogetherAI({
       modelName: "mistralai/Mistral-7B-Instruct-v0.3",
       apiKey: process.env.TO_API_KEY,
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
     });
 
     const embeddings = loadEmbeddingsModel();
-    
+
     let resolveWithDocuments: (value: Document[]) => void;
     const documentPromise = new Promise<Document[]>((resolve) => {
       resolveWithDocuments = resolve;
@@ -80,12 +80,12 @@ export async function POST(req: NextRequest) {
     const retriever = retrieverInfo.retriever;
 
     const ragChain = await createRAGChain(model, retriever);
-    console.log('rag chain called... ')
+    console.log("rag chain called... ");
     const stream = await ragChain.stream({
       input: currentMessageContent,
       chat_history: formattedPreviousMessages,
     });
-    console.log('rag chain end....')
+    console.log("rag chain end....");
     const documents = await documentPromise;
 
     const serializedSources = Buffer.from(
@@ -97,11 +97,11 @@ export async function POST(req: NextRequest) {
           };
         }),
       ),
-    ).toString("base64")
+    ).toString("base64");
     //Convert to bytes so that we can pass into the HTTP response
-    console.log('bytestream called...')
+    console.log("bytestream called...");
     const byteStream = stream.pipeThrough(new TextEncoderStream());
-    console.log('bytestream end...')
+    console.log("bytestream end...");
 
     return new Response(byteStream, {
       headers: {

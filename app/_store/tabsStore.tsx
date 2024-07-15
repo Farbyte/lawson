@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 type TabsStore = {
   activeTab: string;
@@ -6,6 +6,6 @@ type TabsStore = {
 };
 
 export const useTabsStore = create<TabsStore>((set) => ({
-  activeTab: 'summary',
+  activeTab: "summary",
   setActiveTab: (tab) => set({ activeTab: tab }),
 }));

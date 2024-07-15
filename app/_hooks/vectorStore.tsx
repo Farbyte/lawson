@@ -1,7 +1,8 @@
-
-
-export async function vectorStore(fileUrl: string, docId: string,isLarge : boolean) {
-  
+export async function vectorStore(
+  fileUrl: string,
+  docId: string,
+  isLarge: boolean,
+) {
   let res = await fetch("/api/vectorStore", {
     method: "POST",
     headers: {
