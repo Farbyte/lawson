@@ -106,7 +106,7 @@ export const InputComp = ({
               className="bg-slate-100"
             >
               Small Summary
-            </Button> 
+            </Button>
             <Sheet key="bottom">
               <SheetTrigger asChild>
                 <Button className="bg-slate-100">Custom Prompt</Button>
@@ -121,7 +121,7 @@ export const InputComp = ({
                 </SheetHeader>
                 <div className="grid gap-4 py-4">
                   <Textarea
-                    className="dark:bg-[#212121] bg-gray-200 text-black outline-none focus:ring-0 dark:text-white "
+                    className="bg-gray-200 text-black outline-none focus:ring-0 dark:bg-[#212121] dark:text-white"
                     rows={5}
                     value={textareaValue}
                     onChange={handleTextareaChange}

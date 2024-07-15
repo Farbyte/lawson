@@ -24,12 +24,14 @@ export const ChatComp = ({
   messageListRef,
 }: ChatCompProps) => {
   const { activeTab } = useTabsStore();
-  const [copiedMessageIndex, setCopiedMessageIndex] = useState<number | null>(null);
+  const [copiedMessageIndex, setCopiedMessageIndex] = useState<number | null>(
+    null,
+  );
 
   const handleSpeak = (text: string) => {
     if (!window.speechSynthesis) {
       return toast.error("Your browser does not support speech synthesis.");
-    };
+    }
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
   };
@@ -41,8 +43,8 @@ export const ChatComp = ({
         setTimeout(() => setCopiedMessageIndex(null), 2000);
       },
       (err) => {
-        console.error('Failed to copy text: ', err);
-      }
+        console.error("Failed to copy text: ", err);
+      },
     );
   };
 
@@ -94,12 +96,14 @@ export const ChatComp = ({
                                 <Check className="text-green-500" />
                               ) : (
                                 <Clipboard
-                                  className="hover:bg-gray-200 hover:text-black cursor-pointer rounded-md"
-                                  onClick={() => handleCopy(message.content, index)}
+                                  className="cursor-pointer rounded-md hover:bg-gray-200 hover:text-black"
+                                  onClick={() =>
+                                    handleCopy(message.content, index)
+                                  }
                                 />
                               )}
                               <Volume2
-                                className="hover:bg-gray-200 hover:text-black cursor-pointer rounded-md"
+                                className="cursor-pointer rounded-md hover:bg-gray-200 hover:text-black"
                                 onClick={() => handleSpeak(message.content)}
                               />
                             </div>
