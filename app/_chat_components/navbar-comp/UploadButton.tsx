@@ -2,8 +2,8 @@
 
 import { Plus } from "lucide-react";
 import { UploadButton } from "../uploadthing";
-import { uploadPdf } from "@/app/_hooks/uploadDocs";
-import { getLatestDocId } from "@/app/_hooks/getLatest";
+import { uploadPdf } from "@/app/_helper_functions/uploadDocs";
+import { getLatestDocId } from "@/app/_helper_functions/getLatest";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";

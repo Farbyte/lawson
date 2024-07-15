@@ -7,8 +7,8 @@ import { Typebar } from "@/app/_chat_components/typebar";
 import { SummComp } from "@/app/_chat_components/summ-comp";
 import { useTabsStore } from "@/app/_store/tabsStore";
 import { useRouter } from "next/navigation";
-import { fetchSummary } from "@/app/_hooks/fetchSummary";
-import { vectorStore } from "@/app/_hooks/vectorStore";
+import { fetchSummary } from "@/app/_helper_functions/fetchSummary";
+import { vectorStore } from "@/app/_helper_functions/vectorStore";
 import { toast } from "sonner";
 
 export default function SummaryClient({ currentDoc }: { currentDoc: Doc }) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCategorizedDocs } from "@/app/_hooks/categorizeDocs";
+import { useCategorizedDocs } from "@/app/_helper_functions/categorizeDocs";
 import {
   Sheet,
   SheetContent,
