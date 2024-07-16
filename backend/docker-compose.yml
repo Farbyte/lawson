@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  embedder:
+    build: .
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - /app
+    ports:
+      - 8001:8000
+    environment:
+      - TOGETHER_KEY_1=cb8010a0a4871c5743ce8508349113c8efe74842685daa2e42d961023a272e18
+      - TOGETHER_KEY_2=0808e4f5611cf50ae9f45dcaef5873f52b709914c8316aed62969643ad032d08
+      - TOGETHER_KEY_3=3c5af3235b39f6612bace0b8d9955eb5ee60479a4c94b76e27b0d656d860046a
+      - TOGETHER_KEY_4=47d5d14ffbfdc4ab5cf873f7086e4fdd7215b8d217bb1f51ed14b1b68fa7ac2f
+      - API_KEY=55028a9e557993d571f601aa29282878f3fd1659ed4c0381a0c9444fcab5eba5
+      - PINECONE_API_KEY=3ed3ce75-e30b-4ac4-92bb-addc3a3b7667
+      - PINECONE_INDEX_NAME=try
+      - KEY_COUNT=2
+      - TOGETHER_KEY_COUNT=4
+
+    restart : unless-stopped
