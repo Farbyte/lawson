@@ -1,0 +1,14 @@
+python-dotenv
+langchain
+pinecone-client
+fastapi
+langchain-together
+langchain-pinecone
+uvicorn
+langchain-community
+pycryptodome
+PyPDF2
+numpy
+scikit-learn
+together
+fpdf
