@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import {  useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useTabsStore } from "@/app/_store/tabsStore";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Clipboard, Speaker, Volume2, Check } from "lucide-react";
+import { Clipboard, Volume2, Check } from "lucide-react";
 import { toast } from "sonner";
 
 interface ChatCompProps {

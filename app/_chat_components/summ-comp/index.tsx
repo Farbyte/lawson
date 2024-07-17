@@ -5,7 +5,6 @@ import { useTabsStore } from "@/app/_store/tabsStore";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import LoadingDots from "./loading";
-import { Button } from "@/components/ui/button";
 import { jsPDF } from "jspdf";
 import { Clipboard } from "lucide-react";
 

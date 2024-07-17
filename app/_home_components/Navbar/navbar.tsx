@@ -1,5 +1,4 @@
 import Logo from "@/components/ui/logo";
-import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Github } from "lucide-react";
 import Link from "next/link";
 

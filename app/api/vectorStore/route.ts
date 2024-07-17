@@ -4,7 +4,6 @@ import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { loadEmbeddingsModel } from "@/app/api/utils/embeddings";
 import { getAuth } from "@clerk/nextjs/server";
-import prisma from "@/utils/prisma";
 import { Pinecone } from "@pinecone-database/pinecone";
 
 export const maxDuration = 60;

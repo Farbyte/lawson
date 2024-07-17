@@ -4,12 +4,9 @@ import { useCategorizedDocs } from "@/app/_helper_functions/categorizeDocs";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { AlignLeft, Trash } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useParams } from "next/navigation";
