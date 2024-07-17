@@ -7,6 +7,8 @@ import { getAuth } from "@clerk/nextjs/server";
 import prisma from "@/utils/prisma";
 import { Pinecone } from "@pinecone-database/pinecone";
 
+export const maxDuration = 60;
+
 const pinecone = new Pinecone({
   apiKey: process.env.PINECONE_API_KEY as string,
 });
