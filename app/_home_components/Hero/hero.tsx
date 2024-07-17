@@ -42,7 +42,7 @@ export default function Hero() {
               alt="landing page"
               className="z-2 glow-image relative block h-auto w-full rounded-xl object-contain"
             />
-            <BorderBeam className="z-10" size={250} duration={12} delay={9} />
+            <BorderBeam className="z-10 hidden md:block" size={250} duration={12} delay={9} />
           </div>
         </div>
       </div>
