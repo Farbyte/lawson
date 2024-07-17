@@ -21,7 +21,7 @@ export default function SummaryClient({ currentDoc }: { currentDoc: Doc }) {
   useEffect(() => {
     const performVectorStoreAndNavigate = async () => {
       if (activeTab === "chat") {
-        const loadingToastId = toast(
+        const loadingToastId = toast.loading(
           "Loading vector store... Estimated time: 2 min",
         );
         await vectorStore(
