@@ -19,6 +19,7 @@ export const fetchSummary = async (
         fileUrl: currentDoc.fileUrl,
         type: type,
         prompt: prompt,
+        doc : currentDoc
       }),
     });
     if (response.ok) {
