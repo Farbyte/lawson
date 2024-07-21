@@ -46,7 +46,7 @@ export const SummComp = ({
         {markdownContent && (
           <div className="mt-2 flex flex-col items-start md:mt-12">
             <div className="flex w-full items-center justify-between pr-16">
-              <div className="ml-4 border-b-2 text-lg">Summary </div>
+              <div className="ml-4 border-b-2 text-base">Summary </div>
               <button
                 className="my-4 flex items-center gap-1 rounded-md bg-gray-200 p-2 text-sm text-black hover:bg-gray-300 dark:bg-[#4e4c4c] dark:text-white dark:hover:bg-[#2F2F2F]"
                 onClick={() => downloadPDF(markdownContent)}
@@ -55,8 +55,10 @@ export const SummComp = ({
                 Get PDF
               </button>
             </div>
-            <ScrollArea className="h-[80vh] w-[80vw] p-4 pb-[6rem] lg:w-[60vw]">
-              <ReactMarkdown>{markdownContent}</ReactMarkdown>
+            <ScrollArea className="mb-[10rem] h-[80vh] w-[80vw] p-4 pb-[8rem] lg:w-[60vw]">
+              <ReactMarkdown className="prose">
+                {markdownContent}
+              </ReactMarkdown>
             </ScrollArea>
           </div>
         )}

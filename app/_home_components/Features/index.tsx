@@ -4,12 +4,12 @@ import { File, MessageCircle } from "lucide-react";
 
 export default function Features() {
   return (
-    <div className="mx-auto mt-40 max-w-7xl px-10">
+    <div className="mx-auto mt-32 max-w-7xl px-10">
       <div>
-        <h2 className="text-4xl sm:text-6xl">
+        <h2 className="text-3xl sm:text-4xl">
           Features <br />
         </h2>
-        <p className="mt-3 max-w-2xl text-lg text-gray-700 dark:text-gray-300">
+        <p className="mt-3 max-w-2xl text-base text-gray-700 dark:text-gray-300">
           Lawson has a lot of features that make it easy to use and productive.
         </p>
         <BentoGridDemo />

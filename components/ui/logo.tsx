@@ -17,7 +17,7 @@ export default function Logo({
           <h3
             className={`${
               colorTheme === "light" ? "text-white" : "text-gray-900"
-            } tracking-loose mb-0 ml-2 pb-0 text-xl font-semibold`}
+            } tracking-loose mb-0 ml-2 pb-0 text-lg font-semibold`}
           >
             lawson.
           </h3>

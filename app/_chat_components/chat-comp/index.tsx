@@ -49,9 +49,9 @@ export const ChatComp = ({
 
   return (
     activeTab === "chat" && (
-      <div className="align-center mx-auto flex h-[75vh] w-[80vw] flex-col justify-between pb-[9rem]">
+      <div className="align-center mx-auto flex h-[70vh] w-[80vw] flex-col justify-between pb-[20rem]">
         <div
-          className={`bg-background flex h-[77vh] w-full items-center justify-center sm:h-[77vh]`}
+          className={`bg-background flex h-[77vh] w-full items-center justify-center sm:h-[72vh]`}
         >
           <div
             ref={messageListRef}

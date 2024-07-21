@@ -85,7 +85,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
               .filter(([_, docs]) => docs.length > 0)
               .map(([category, docs]) => (
                 <div key={category}>
-                  <div className="px-3 text-xs font-semibold capitalize text-gray-400">
+                  <div className="px-3 text-[0.65rem] font-semibold capitalize text-gray-400">
                     {category}
                   </div>
                   {docs.map((doc) => (
@@ -96,7 +96,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
                       }}
                       className="flex cursor-pointer justify-between rounded-lg p-3 text-black hover:bg-[#E5E7EB] dark:text-white dark:hover:bg-[#212121]"
                     >
-                      <button className="text-md">
+                      <button className="text-sm">
                         {truncate(doc.fileName, 20)}
                       </button>
                       <button
@@ -108,7 +108,7 @@ export default function NavSidebar({ initialDocs }: { initialDocs: Doc[] }) {
                           });
                         }}
                       >
-                        <Trash className="h-5 w-5 text-red-400 hover:text-red-600" />
+                        <Trash className="h-4 w-4 text-red-400 hover:text-red-600" />
                       </button>
                     </div>
                   ))}

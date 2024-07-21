@@ -14,7 +14,7 @@ const Circle = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "z-10 flex max-w-4xl items-center justify-center rounded-full border border-[#212121] bg-black p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]",
+        "z-10 flex max-w-[50rem] items-center justify-center rounded-full border border-[#212121] bg-black p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]",
         className,
       )}
     >
@@ -41,7 +41,7 @@ export function Beam({ className }: { className?: string }) {
       )}
       ref={containerRef}
     >
-      <div className="flex size-full max-w-4xl flex-row items-stretch justify-between gap-3">
+      <div className="flex size-full max-w-3xl flex-row items-stretch justify-between gap-3">
         <div className="flex flex-col justify-center gap-10 md:gap-[6rem]">
           <Circle ref={div1Ref}>
             <FileText className="h-8 w-8 text-white" />

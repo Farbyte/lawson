@@ -8,7 +8,7 @@ export default function Chat() {
       <Navbar />
       <Typebar disabled={true} />
       <div className="flex h-[77vh] flex-col items-center justify-center">
-        <div className="font-virgil text-lg text-[#8E8E8E] md:text-2xl lg:text-4xl">
+        <div className="font-virgil text-base text-[#8E8E8E] md:text-xl lg:text-3xl">
           Click on the "+" button to start chatting...
         </div>
       </div>

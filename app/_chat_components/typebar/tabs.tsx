@@ -19,7 +19,7 @@ export const Tabs = ({
   const { activeTab, setActiveTab } = useTabsStore();
   const [selectedTab, setSelectedTab] = useState("summary");
   return (
-    <div className="no-visible-scrollbar relative flex w-full max-w-full flex-row items-center justify-center overflow-auto sm:overflow-visible">
+    <div className="no-visible-scrollbar relative flex w-full max-w-full flex-row items-center justify-center overflow-auto sm:overflow-visible text-sm">
       {tabs.map((tab) => (
         <button
           key={tab.title}
