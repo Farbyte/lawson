@@ -24,7 +24,7 @@ export async function POST(req: Request) {
   const isLarge = data.doc.isLarge
   if (isLarge){
     console.log('LARGE SUMMARY ROUTE CALLED')
-    const res = await fetch(`${process.env.SUMMARIZER_URL}/${data.doc.id}?api_key=${process.env.EM_API_KEY}`,{
+    const res = await fetch(`${process.env.EMBEDDER_URL}/summarize/${data.doc.id}?api_key=${process.env.EM_API_KEY}`,{
       method : 'GET',
       headers : {
         "Content-Type": "application/json"
